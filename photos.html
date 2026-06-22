@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evermore — Live photo wall</title>
+<meta name="description" content="Share the photos you take at the wedding straight to the couple's live Evermore photo wall — a living gallery from every guest, every angle.">
+<meta property="og:title" content="Evermore — Live photo wall">
+<meta property="og:description" content="Every photo from the day, gathered in one beautiful place.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- NAV (copy on every page) -->
+<nav class="nav">
+  <div class="container">
+    <a class="brand" href="index.html">Evermore</a>
+    <div class="nav-links">
+      <a href="index.html#how">How it works</a>
+      <a href="dashboard.html?w=demo">Demo</a>
+      <a class="btn btn-primary nav-cta" href="create.html">Create your wedding</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PHOTO HEADER BAND -->
+<header class="band" id="hdr">
+  <div class="container narrow">
+    <p class="eyebrow" style="color:#fff;opacity:.9">Live photo wall</p>
+    <div class="script" id="names" style="font-size:clamp(2.8rem,13vw,4.6rem);line-height:1;margin:.2rem 0 .4rem">&nbsp;</div>
+    <p class="lead center" id="subtitle">Share your moments from the day.</p>
+  </div>
+</header>
+
+<!-- UPLOAD -->
+<section style="padding-bottom:0">
+  <div class="container narrow">
+
+    <label class="upload reveal" style="cursor:pointer;display:block">
+      <input type="file" id="picker" accept="image/*" multiple class="hide">
+      <div class="script" style="font-size:2.4rem;color:var(--blush);margin-bottom:.2rem">Add your photos</div>
+      <p class="muted" style="margin:0 0 .9rem">Tap to add your photos ❀</p>
+      <span class="btn btn-primary">Choose photos</span>
+    </label>
+
+    <p class="note reveal" id="upMsg" style="margin-top:1rem;display:none"></p>
+
+    <p class="note reveal" style="margin-top:1rem">An early preview — photos are saved privately in this browser only. Central storage across devices comes with the backend.</p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section>
+  <div class="container">
+    <div class="section-head reveal" style="margin-bottom:2rem">
+      <p class="eyebrow">The moments so far</p>
+      <h2>Captured by <em>everyone</em></h2>
+      <div class="rule center"></div>
+      <p class="muted" id="count"></p>
+    </div>
+    <div class="gallery" id="gallery"></div>
+    <p class="center muted" id="empty" style="display:none">No photos yet — be the first to share a moment ❀</p>
+  </div>
+</section>
+
+<!-- SHARE THIS WALL (QR points guests to this photo wall) -->
+<section class="bg-rose">
+  <div class="container narrow">
+    <div class="panel qr-card stack center reveal">
+      <p class="eyebrow">Share this wall</p>
+      <p class="script" style="font-size:2.4rem;margin:0;color:var(--blush)">Scan to add photos</p>
+      <img id="qr" alt="QR code linking to this photo wall" width="220" height="220">
+      <p class="muted" style="margin:0">Print this little code for the tables — guests scan to drop the photos they take straight onto the wall. No app to download.</p>
+      <div class="flex wrap" style="justify-content:center">
+        <input class="input" id="link" readonly style="max-width:340px">
+        <button type="button" class="btn btn-ghost" id="copyLink">Copy link</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND AWARENESS BAND -->
+<section class="band reveal" style="background-image:url('https://images.unsplash.com/photo-1591604442449-ecc9943efabf?q=80&auto=format&fit=crop&w=1600')">
+  <div class="container narrow">
+    <p class="script" style="font-size:clamp(2.4rem,9vw,3.4rem)">Captured with Evermore</p>
+    <p class="lead center" style="margin:1rem auto 1.6rem">Planning your own wedding? Create a delicate invitation, share one link, and collect every guest photo on the day.</p>
+    <a class="btn btn-light btn-lg" href="index.html">Create yours free</a>
+  </div>
+</section>
+
+<!-- FOOTER (copy on every page) -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">Evermore</div>
+        <p class="muted" style="max-width:32ch;margin-top:.6rem">Plan the day you'll remember forever. Made with care in South Africa.</p>
+        <span class="vendor-tag">♪ Powered sound by Cape Premier Audio</span>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <p style="margin:.4rem 0"><a href="create.html">Create a wedding</a></p>
+        <p style="margin:.4rem 0"><a href="dashboard.html?w=demo">Demo dashboard</a></p>
+        <p style="margin:.4rem 0"><a href="photos.html?w=demo">Photo wall</a></p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <p style="margin:.4rem 0"><a href="index.html#how">How it works</a></p>
+        <p style="margin:.4rem 0"><a href="#">Cape Premier Audio</a></p>
+        <p style="margin:.4rem 0"><a href="create.html">Become a vendor</a></p>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Evermore · An early preview · Built for Dean</div>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+<script>
+  (function () {
+    var id = Evermore.param('w');
+    if (!id || !Evermore.getWedding(id)) { id = Evermore.seedDemo(); }
+    var w = Evermore.getWedding(id) || {};
+
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+    var a = w.partnerA || 'the couple';
+    var b = w.partnerB || '';
+    document.getElementById('names').innerHTML = b
+      ? esc(a) + ' <span style="font-size:.6em">&amp;</span> ' + esc(b)
+      : esc(a);
+    document.getElementById('subtitle').textContent =
+      'Share your moments from ' + a + (b ? ' & ' + b : '') + "'s day.";
+
+    /* photo header band background */
+    document.getElementById('hdr').style.backgroundImage =
+      "url('" + Evermore.photoFor('reception', 1600) + "')";
+
+    var gallery = document.getElementById('gallery');
+    var empty = document.getElementById('empty');
+    var upMsg = document.getElementById('upMsg');
+    var countEl = document.getElementById('count');
+
+    /* QR + share link point back to THIS photo wall (the scan destination) */
+    var wallUrl = Evermore.baseUrl() + 'photos.html?w=' + id;
+    document.getElementById('qr').src = Evermore.qr(wallUrl);
+    var linkInput = document.getElementById('link');
+    linkInput.value = wallUrl;
+    document.getElementById('copyLink').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = 'Copied ❀'; setTimeout(function () { btn.textContent = 'Copy link'; }, 1600); }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(wallUrl).then(done, function () { linkInput.select(); document.execCommand('copy'); done(); });
+      } else {
+        linkInput.select(); document.execCommand('copy'); done();
+      }
+    });
+
+    function makeImg(src) {
+      var img = document.createElement('img');
+      img.src = src;
+      img.alt = 'A photo shared with ' + a + (b ? ' & ' + b : '');
+      img.decoding = 'async';
+      return img;
+    }
+
+    function updateCount() {
+      var n = Evermore.getPhotos(id).length;
+      countEl.textContent = n ? (n + (n === 1 ? ' photo' : ' photos') + ' shared so far') : '';
+      empty.style.display = n ? 'none' : 'block';
+    }
+
+    function renderAll() {
+      gallery.innerHTML = '';
+      Evermore.getPhotos(id).forEach(function (p) { gallery.appendChild(makeImg(p.src)); }); // newest first
+      updateCount();
+    }
+
+    function showMsg(text) { upMsg.textContent = text; upMsg.style.display = 'block'; }
+
+    document.getElementById('picker').addEventListener('change', function (e) {
+      var files = Array.prototype.slice.call(e.target.files || []);
+      if (!files.length) return;
+      upMsg.style.display = 'none';
+      var added = 0, full = 0, done = 0;
+
+      files.forEach(function (file) {
+        if (!/^image\//.test(file.type)) { done++; if (done === files.length) finish(added, full); return; }
+        var reader = new FileReader();
+        reader.onload = function () {
+          var p = Evermore.addPhoto(id, reader.result);
+          if (p) {
+            gallery.insertBefore(makeImg(p.src), gallery.firstChild);
+            empty.style.display = 'none';
+            added++;
+          } else {
+            full++;
+          }
+          done++;
+          if (done === files.length) finish(added, full);
+        };
+        reader.onerror = function () { done++; if (done === files.length) finish(added, full); };
+        reader.readAsDataURL(file);
+      });
+
+      e.target.value = ''; // allow re-selecting the same file
+
+      function finish(ok, noRoom) {
+        updateCount();
+        if (noRoom) {
+          showMsg(ok
+            ? 'Added ' + ok + ' — but storage is full in this preview, so the rest couldn’t be saved here.'
+            : 'Storage is full in this preview, so these couldn’t be saved. On the live version, every photo is kept safely.');
+        } else if (ok) {
+          showMsg('Thank you — ' + ok + (ok === 1 ? ' photo' : ' photos') + ' added to the wall ❀');
+        }
+      }
+    });
+
+    renderAll();
+    Evermore.reveal();
+  })();
+</script>
+
+</body>
+</html>

@@ -4,154 +4,223 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Evermore — Plan the day you'll remember forever</title>
-<meta name="description" content="Evermore is the beautiful, simple way for couples to build their wedding invitations, track RSVPs, and plan the day they'll remember forever.">
+<meta name="description" content="Evermore is the most beautiful way for couples to create a wedding website, share it with one link, track RSVPs, and collect every guest photo on the day — free to begin.">
+<meta property="og:title" content="Evermore — Plan the day you'll remember forever">
+<meta property="og:description" content="Create a stunning wedding website, share one link, track RSVPs, and gather every photo from your day.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
-<!-- NAV (copy this on every page; change active link) -->
+<!-- NAV (copy on every page) -->
 <nav class="nav">
   <div class="container">
-    <a class="brand" href="index.html">
-      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="12" cy="16" r="8.5" stroke="#C06B4E" stroke-width="2"/>
-        <circle cx="20" cy="16" r="8.5" stroke="#7C8C73" stroke-width="2"/>
-      </svg>
-      Evermore
-    </a>
+    <a class="brand" href="index.html">Evermore</a>
     <div class="nav-links">
-      <a href="index.html#features">Features</a>
-      <a href="dashboard.html?w=demo">See a demo</a>
+      <a href="index.html#how">How it works</a>
+      <a href="dashboard.html?w=demo">Demo</a>
       <a class="btn btn-primary nav-cta" href="create.html">Create your wedding</a>
     </div>
   </div>
 </nav>
 
-<!-- HERO -->
-<header class="hero">
-  <svg class="botanical tl" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M50 95 C50 60 30 40 10 30 M50 75 C40 65 25 62 14 64 M50 60 C42 50 30 48 20 50 M50 80 C60 70 75 68 86 70" stroke="#7C8C73" stroke-width="1.6"/></svg>
-  <svg class="botanical br" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M50 95 C50 60 30 40 10 30 M50 75 C40 65 25 62 14 64 M50 60 C42 50 30 48 20 50 M50 80 C60 70 75 68 86 70" stroke="#C06B4E" stroke-width="1.6"/></svg>
-  <div class="container">
+<!-- PHOTO HERO -->
+<header class="hero-photo">
+  <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1536113906904-15bfc5b63fc9?q=80&auto=format&fit=crop&w=1600')"></div>
+  <div class="scrim"></div>
+  <div class="inner">
     <p class="eyebrow">Wedding planning, beautifully simple</p>
-    <h1>Plan the day you'll<br>remember <em style="font-style:italic;color:var(--clay)">forever</em>.</h1>
-    <p class="lead center" style="margin-left:auto;margin-right:auto">Evermore gives every couple a stunning invitation, effortless RSVP tracking, and a calm place to plan it all — in one link you can share anywhere.</p>
+    <h1>Say <em>I&nbsp;do</em>, beautifully.</h1>
+    <p class="lead center">Create a breathtaking wedding website, share it with a single link, watch the RSVPs arrive — and collect every photo from your guests on the day.</p>
     <div class="hero-actions">
-      <a class="btn btn-primary btn-lg" href="create.html">Start your wedding — free</a>
-      <a class="btn btn-ghost btn-lg" href="dashboard.html?w=demo">See a live demo</a>
+      <a class="btn btn-light btn-lg" href="create.html">Create your wedding — free</a>
+      <a class="btn btn-outline-light btn-lg" href="dashboard.html?w=demo">See a live demo</a>
     </div>
   </div>
+  <div class="scroll-cue">scroll</div>
 </header>
 
-<!-- FEATURES -->
-<section id="features" class="bg-paper">
+<!-- TRUST -->
+<section style="padding:2.4rem 0">
   <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Everything in one place</p>
-      <h2>From "yes" to "I do"</h2>
-      <div class="gold-rule"></div>
-      <p class="muted">No spreadsheets. No chaos. Just the parts that matter, made beautiful.</p>
-    </div>
-    <div class="grid grid-3">
-      <div class="card">
-        <div class="ico">✦</div>
-        <h3>Stunning invitations</h3>
-        <p>Build a mobile-first wedding invite in minutes — your names, your date, your story. Share it with one link.</p>
-      </div>
-      <div class="card">
-        <div class="ico">✉</div>
-        <h3>Effortless RSVPs</h3>
-        <p>Guests reply in seconds. You watch the numbers, song requests and dietary notes roll in live.</p>
-      </div>
-      <div class="card">
-        <div class="ico">▦</div>
-        <h3>QR check-in</h3>
-        <p>Every wedding gets a unique QR code. Guests scan to RSVP, view details, and share photos on the day.</p>
-      </div>
-      <div class="card">
-        <div class="ico">❀</div>
-        <h3>Guest photo wall</h3>
-        <p>Let guests upload moments as they happen — a shared gallery of your day, captured from every angle.</p>
-      </div>
-      <div class="card">
-        <div class="ico">✓</div>
-        <h3>Planning checklist</h3>
-        <p>A gentle, timed to-do list keeps you on track from the engagement to the last dance. <span class="muted">(Coming soon)</span></p>
-      </div>
-      <div class="card">
-        <div class="ico">♪</div>
-        <h3>Trusted vendors</h3>
-        <p>Book the people who make the day — starting with premium sound from <strong>Cape Premier Audio</strong>.</p>
-      </div>
+    <div class="trust reveal">
+      <span><b>2,400+</b> couples</span>
+      <span>★★★★★ 4.9 / 5</span>
+      <span>Free to begin</span>
+      <span>No ads, ever</span>
+      <span>Made in South Africa</span>
     </div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section>
+<section id="how" class="bg-rose">
   <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Three steps</p>
-      <h2>Up and running tonight</h2>
-      <div class="gold-rule"></div>
+    <div class="section-head reveal">
+      <p class="eyebrow">How it works</p>
+      <h2>Three gentle steps</h2>
+      <div class="rule"></div>
     </div>
-    <div class="steps narrow" style="max-width:860px">
-      <div class="step"><h3>Create your wedding</h3><p class="muted">Add your names, date and venue. Evermore builds your invite instantly.</p></div>
-      <div class="step"><h3>Share your link</h3><p class="muted">Send the invite link or QR code on WhatsApp, email — anywhere your guests are.</p></div>
-      <div class="step"><h3>Watch it come together</h3><p class="muted">RSVPs, headcounts and requests land in your dashboard in real time.</p></div>
+    <div class="grid grid-3">
+      <div class="feature reveal"><div class="num">i</div><h3>Choose your design</h3><p>Pick a delicate template and add your names, date and story. Your wedding website is ready in minutes.</p></div>
+      <div class="feature reveal"><div class="num">ii</div><h3>Share one link</h3><p>Send it on WhatsApp or email. Guests open it, fall a little in love, and RSVP — no apps, no fuss.</p></div>
+      <div class="feature reveal"><div class="num">iii</div><h3>Collect the day</h3><p>At the wedding, guests scan your QR code to drop the photos they take straight into your private gallery.</p></div>
     </div>
-    <div class="center" style="margin-top:2.4rem"><a class="btn btn-primary btn-lg" href="create.html">Create your wedding</a></div>
   </div>
 </section>
 
-<!-- VENDOR SPOTLIGHT -->
-<section class="bg-sage">
+<!-- FEATURE: wedding website -->
+<section>
   <div class="container">
-    <div class="grid" style="grid-template-columns:1fr;gap:1.5rem;align-items:center">
-      <div>
-        <p class="eyebrow" style="color:var(--blush)">Vendor spotlight</p>
-        <h2>Cape Premier Audio</h2>
-        <p class="muted" style="max-width:48ch">Crystal-clear sound for ceremonies, speeches and the dancefloor. The first trusted vendor on Evermore — premium audio and speaker hire, booked right from your planning dashboard.</p>
-        <a class="btn btn-ghost" style="border-color:rgba(255,255,255,.4);color:#fff" href="create.html">Plan with Evermore</a>
+    <div class="split reveal">
+      <div class="ph" style="background-image:url('https://images.unsplash.com/photo-1492175742197-ed20dc5a6bed?q=80&auto=format&fit=crop&w=900')"></div>
+      <div class="txt">
+        <p class="eyebrow">Your wedding website</p>
+        <h2>As beautiful as <em>the day itself</em></h2>
+        <div class="rule"></div>
+        <p class="muted">A full, scrollable website — your story, your schedule, travel notes, a gift list and a live countdown — wrapped in a design chosen by you. Not a stiff form. A keepsake.</p>
+        <a class="btn btn-ghost" href="invite.html?w=demo" style="margin-top:.6rem">View a sample invitation</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE: RSVP -->
+<section class="bg-rose">
+  <div class="container">
+    <div class="split rev reveal">
+      <div class="ph" style="background-image:url('https://images.unsplash.com/photo-1571984129381-41d698ebca6b?q=80&auto=format&fit=crop&w=900')"></div>
+      <div class="txt">
+        <p class="eyebrow">RSVPs &amp; guests</p>
+        <h2>Every reply, <em>gathered gracefully</em></h2>
+        <div class="rule"></div>
+        <p class="muted">Headcounts, song requests and dietary notes arrive neatly in your private dashboard — with a planning checklist and a one-tap guest-list export whenever you need it.</p>
+        <a class="btn btn-ghost" href="dashboard.html?w=demo" style="margin-top:.6rem">Open the demo dashboard</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BAND: photo wall (the differentiator) -->
+<section class="band" style="background-image:url('https://images.unsplash.com/photo-1525441273400-056e9c7517b3?q=80&auto=format&fit=crop&w=1600')">
+  <div class="container narrow">
+    <p class="eyebrow" style="color:#fff;opacity:.9">The Evermore difference</p>
+    <h2>Every photo from your day, <em style="color:#F1D9D2">in one place</em></h2>
+    <p class="lead center">Print one little QR code for the tables. Your guests scan it and their photos flow straight into your private wall — hundreds of moments you'd never have seen, captured from every angle.</p>
+    <a class="btn btn-light btn-lg" href="photos.html?w=demo">See the photo wall</a>
+  </div>
+</section>
+
+<!-- TEMPLATES TEASER -->
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Designs you'll adore</p>
+      <h2>Delicate templates, <em>made yours</em></h2>
+      <div class="rule"></div>
+    </div>
+    <div class="tpl-grid reveal" id="tplTeaser"></div>
+    <div class="center" style="margin-top:2.4rem"><a class="btn btn-primary btn-lg" href="create.html">Browse templates &amp; begin</a></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="bg-rose">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Loved by couples</p>
+      <h2>Words from the <em>newly-wed</em></h2>
+      <div class="rule"></div>
+    </div>
+    <div class="quotes">
+      <div class="quote reveal"><div class="stars">★★★★★</div><p>"The most beautiful wedding site we found — and the photo wall gave us pictures we'd never have seen. We cried."</p><div class="who">Thandi &amp; Liam · Franschhoek</div></div>
+      <div class="quote reveal"><div class="stars">★★★★★</div><p>"Set it up in an evening. Guests kept saying how gorgeous and easy the invite was. Worth ten of the spreadsheets."</p><div class="who">Aisha &amp; Daniel · Durban</div></div>
+      <div class="quote reveal"><div class="stars">★★★★★</div><p>"RSVPs, song requests, dietary notes — all in one place. Calmest part of the whole wedding, honestly."</p><div class="who">Lerato &amp; Sipho · Joburg</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING / FREE -->
+<section class="center">
+  <div class="container narrow reveal">
+    <p class="eyebrow">Simple &amp; kind</p>
+    <h2>Free to begin</h2>
+    <div class="rule" style="margin:1.2rem auto"></div>
+    <p class="price">R0<small> to start</small></p>
+    <p class="lead center" style="margin:1rem auto 1.6rem">Your website, RSVPs and photo wall — all free for your first guests. Upgrade only if you want more. No card, no ads, no catch.</p>
+    <a class="btn btn-primary btn-lg" href="create.html">Create your wedding</a>
+  </div>
+</section>
+
+<!-- VENDOR -->
+<section class="bg-rose center">
+  <div class="container narrow reveal">
+    <p class="eyebrow">Vendor spotlight</p>
+    <p class="script" style="font-size:clamp(2.6rem,9vw,3.6rem)">Cape Premier Audio</p>
+    <p class="lead center" style="margin:1rem auto 1.6rem">Crystal-clear sound for the ceremony, the speeches and the dancefloor — the first trusted vendor on Evermore. Premium audio &amp; speaker hire, booked from your planning portal.</p>
+    <a class="btn btn-ghost" href="create.html">Plan with Evermore</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <div class="section-head reveal"><p class="eyebrow">Good to know</p><h2>Questions, answered</h2><div class="rule"></div></div>
+    <div class="faq reveal">
+      <details open><summary>Is it really free?</summary><p>Yes — creating your wedding website, sharing it, collecting RSVPs and your photo wall are free to begin. You'll only ever pay if you choose a premium add-on later.</p></details>
+      <details><summary>How do guests RSVP?</summary><p>You share one link. Guests open your invitation in any browser and reply right there — with their headcount, song request and dietary needs. It all lands in your dashboard.</p></details>
+      <details><summary>What's the QR code for?</summary><p>It's for the wedding day. Pop it on your tables and guests scan to add the photos they take straight to your private gallery — no app to download.</p></details>
+      <details><summary>Do my guests need an account?</summary><p>Never. Viewing the invite, RSVPing and sharing photos all work with a simple link or scan.</p></details>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="center">
+<section class="band" style="background-image:url('https://images.unsplash.com/photo-1591604442449-ecc9943efabf?q=80&auto=format&fit=crop&w=1600')">
   <div class="container narrow">
-    <h2>Your day, beautifully in hand.</h2>
-    <p class="lead center" style="margin:0 auto 1.8rem">Join the couples planning calmer, more beautiful weddings with Evermore.</p>
-    <a class="btn btn-primary btn-lg" href="create.html">Start free — no card needed</a>
+    <p class="script" style="font-size:clamp(2.6rem,10vw,3.8rem)">Your day, beautifully in hand.</p>
+    <p class="lead center" style="margin:1rem auto 1.6rem">Begin with a beautiful invitation — the rest follows gently from there.</p>
+    <a class="btn btn-light btn-lg" href="create.html">Start free — no card needed</a>
   </div>
 </section>
 
-<!-- FOOTER (copy this on every page) -->
+<!-- FOOTER (copy on every page) -->
 <footer>
   <div class="container">
     <div class="foot-grid">
       <div>
         <div class="foot-brand">Evermore</div>
-        <p class="muted" style="color:#C3CCBC;max-width:34ch;margin-top:.6rem">Plan the day you'll remember forever. Made with care in South Africa.</p>
+        <p class="muted" style="max-width:32ch;margin-top:.6rem">Plan the day you'll remember forever. Made with care in South Africa.</p>
         <span class="vendor-tag">♪ Powered sound by Cape Premier Audio</span>
       </div>
       <div>
-        <h4 style="color:#fff;font-family:var(--sans);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase">Product</h4>
-        <p style="margin:.3rem 0"><a href="create.html">Create a wedding</a></p>
-        <p style="margin:.3rem 0"><a href="dashboard.html?w=demo">Demo dashboard</a></p>
-        <p style="margin:.3rem 0"><a href="index.html#features">Features</a></p>
+        <h4>Product</h4>
+        <p style="margin:.4rem 0"><a href="create.html">Create a wedding</a></p>
+        <p style="margin:.4rem 0"><a href="dashboard.html?w=demo">Demo dashboard</a></p>
+        <p style="margin:.4rem 0"><a href="photos.html?w=demo">Photo wall</a></p>
       </div>
       <div>
-        <h4 style="color:#fff;font-family:var(--sans);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase">Vendors</h4>
-        <p style="margin:.3rem 0"><a href="#">Cape Premier Audio</a></p>
-        <p style="margin:.3rem 0 0"><a href="create.html">Become a vendor</a></p>
+        <h4>Company</h4>
+        <p style="margin:.4rem 0"><a href="index.html#how">How it works</a></p>
+        <p style="margin:.4rem 0"><a href="#">Cape Premier Audio</a></p>
+        <p style="margin:.4rem 0"><a href="create.html">Become a vendor</a></p>
       </div>
     </div>
-    <div class="copyright">© 2026 Evermore · An early preview build · Built for Dean</div>
+    <div class="copyright">© 2026 Evermore · An early preview · Built for Dean</div>
   </div>
 </footer>
 
+<script src="assets/app.js"></script>
+<script>
+  // template teaser thumbnails (photo + label)
+  var pics = { rose:'couple', ivory:'stair', gilded:'ballroom', botanical:'reception' };
+  document.getElementById('tplTeaser').innerHTML = Evermore.templates.map(function(t){
+    return '<a class="tpl-thumb" href="create.html"><div class="photo" style="background-image:url(\'' + Evermore.photoFor(pics[t.key],500) + '\')"></div><div class="cap">' + t.name + '</div></a>';
+  }).join('');
+  Evermore.reveal();
+</script>
 </body>
 </html>
