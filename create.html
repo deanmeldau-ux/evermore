@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create your wedding — Evermore</title>
+<meta name="description" content="Create your wedding on Evermore in minutes — add your names, date and venue, and get a beautiful shareable invitation link and QR code instantly.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- NAV (copy this on every page; change active link) -->
+<nav class="nav">
+  <div class="container">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="12" cy="16" r="8.5" stroke="#C06B4E" stroke-width="2"/>
+        <circle cx="20" cy="16" r="8.5" stroke="#7C8C73" stroke-width="2"/>
+      </svg>
+      Evermore
+    </a>
+    <div class="nav-links">
+      <a href="index.html#features">Features</a>
+      <a href="dashboard.html?w=demo">See a demo</a>
+      <a class="btn btn-primary nav-cta" href="create.html">Create your wedding</a>
+    </div>
+  </div>
+</nav>
+
+<!-- CREATE -->
+<section>
+  <div class="container">
+
+    <!-- FORM -->
+    <div id="formWrap" class="panel narrow">
+      <div class="section-head" style="margin-bottom:1.8rem">
+        <p class="eyebrow">Create your wedding</p>
+        <h1 style="font-size:clamp(2rem,6vw,3rem)">Let's build your day</h1>
+        <div class="gold-rule"></div>
+        <p class="muted">Add the essentials and Evermore creates your invitation, shareable link and QR code in seconds.</p>
+      </div>
+
+      <form id="createForm" novalidate>
+        <div class="field">
+          <label>Your names</label>
+          <div class="row row-2">
+            <input class="input" id="partnerA" type="text" placeholder="Partner A" autocomplete="off" required>
+            <input class="input" id="partnerB" type="text" placeholder="Partner B" autocomplete="off" required>
+          </div>
+          <p class="help">These two names headline your invitation.</p>
+        </div>
+
+        <div class="field">
+          <label for="date">Wedding date</label>
+          <input class="input" id="date" type="date" required>
+        </div>
+
+        <div class="field">
+          <label for="venue">Venue</label>
+          <input class="input" id="venue" type="text" placeholder="e.g. Boschendal Estate, Franschhoek" autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label for="story">Your story <span class="muted" style="font-weight:400">(optional)</span></label>
+          <textarea id="story" placeholder="A line or two for your guests — how you met, what this day means…"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="theme">Theme <span class="muted" style="font-weight:400">(optional)</span></label>
+          <select id="theme">
+            <option value="sage">Sage — calm &amp; botanical</option>
+            <option value="clay">Clay — warm &amp; earthy</option>
+            <option value="blush">Blush — soft &amp; romantic</option>
+          </select>
+        </div>
+
+        <p id="formError" class="help hide" style="color:var(--clay-dark);font-weight:600"></p>
+
+        <button class="btn btn-primary btn-lg btn-block" type="submit" style="margin-top:.6rem">Create my wedding</button>
+
+        <div class="note" style="margin-top:1.4rem">Demo saves in your browser. Central storage for all couples comes with the backend.</div>
+      </form>
+    </div>
+
+    <!-- SUCCESS -->
+    <div id="successWrap" class="panel narrow hide">
+      <div class="center" style="margin-bottom:1.4rem">
+        <p class="eyebrow">It's official</p>
+        <h1 style="font-size:clamp(2rem,6vw,3rem)">Your wedding is live ✨</h1>
+        <div class="gold-rule"></div>
+        <p class="muted" id="successSub" style="max-width:46ch;margin-inline:auto"></p>
+      </div>
+
+      <div class="field">
+        <label for="shareLink">Your shareable invite link</label>
+        <div class="row row-2" style="grid-template-columns:1fr auto;align-items:stretch">
+          <input class="input" id="shareLink" type="text" readonly>
+          <button class="btn btn-ghost" type="button" id="copyBtn">Copy</button>
+        </div>
+        <p class="help">Send this on WhatsApp, email — anywhere your guests are.</p>
+      </div>
+
+      <div class="qr-card" style="margin:1.8rem 0">
+        <img id="qrImg" alt="QR code linking to your wedding invitation" width="220" height="220">
+        <p class="help center" style="margin-top:.8rem">Guests can scan this to open your invitation.</p>
+      </div>
+
+      <div class="stack">
+        <a class="btn btn-primary btn-lg btn-block" id="viewBtn" href="#">View your invitation</a>
+        <a class="btn btn-ghost btn-lg btn-block" id="dashBtn" href="#">Open your dashboard</a>
+      </div>
+
+      <div class="note" style="margin-top:1.4rem">Demo saves in your browser. Central storage for all couples comes with the backend.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER (copy this on every page) -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">Evermore</div>
+        <p class="muted" style="color:#C3CCBC;max-width:34ch;margin-top:.6rem">Plan the day you'll remember forever. Made with care in South Africa.</p>
+        <span class="vendor-tag">♪ Powered sound by Cape Premier Audio</span>
+      </div>
+      <div>
+        <h4 style="color:#fff;font-family:var(--sans);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase">Product</h4>
+        <p style="margin:.3rem 0"><a href="create.html">Create a wedding</a></p>
+        <p style="margin:.3rem 0"><a href="dashboard.html?w=demo">Demo dashboard</a></p>
+        <p style="margin:.3rem 0"><a href="index.html#features">Features</a></p>
+      </div>
+      <div>
+        <h4 style="color:#fff;font-family:var(--sans);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase">Vendors</h4>
+        <p style="margin:.3rem 0"><a href="#">Cape Premier Audio</a></p>
+        <p style="margin:.3rem 0 0"><a href="create.html">Become a vendor</a></p>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Evermore · An early preview build · Built for Dean</div>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+<script>
+(function () {
+  var form = document.getElementById('createForm');
+  var formWrap = document.getElementById('formWrap');
+  var successWrap = document.getElementById('successWrap');
+  var errEl = document.getElementById('formError');
+
+  function showError(msg) {
+    errEl.textContent = msg;
+    errEl.classList.remove('hide');
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    errEl.classList.add('hide');
+
+    var partnerA = document.getElementById('partnerA').value.trim();
+    var partnerB = document.getElementById('partnerB').value.trim();
+    var date     = document.getElementById('date').value;
+    var venue    = document.getElementById('venue').value.trim();
+    var story    = document.getElementById('story').value.trim();
+    var theme    = document.getElementById('theme').value;
+
+    if (!partnerA || !partnerB) {
+      showError('Please add both names so we can build your invitation.');
+      return;
+    }
+    if (!date) {
+      showError('Please choose your wedding date.');
+      return;
+    }
+
+    var wedding = Evermore.createWedding({
+      partnerA: partnerA,
+      partnerB: partnerB,
+      date: date,
+      venue: venue,
+      story: story,
+      theme: theme
+    });
+    Evermore.setCurrent(wedding.id);
+
+    var id = wedding.id;
+    var link = Evermore.baseUrl() + 'invite.html?w=' + id;
+
+    document.getElementById('shareLink').value = link;
+    document.getElementById('qrImg').src = Evermore.qr(link, 220);
+    document.getElementById('viewBtn').href = 'invite.html?w=' + id;
+    document.getElementById('dashBtn').href = 'dashboard.html?w=' + id;
+    document.getElementById('successSub').textContent =
+      partnerA + ' & ' + partnerB + ' · ' + Evermore.fmtDate(date);
+
+    formWrap.classList.add('hide');
+    successWrap.classList.remove('hide');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  var copyBtn = document.getElementById('copyBtn');
+  copyBtn.addEventListener('click', function () {
+    var input = document.getElementById('shareLink');
+    var done = function () {
+      var original = copyBtn.textContent;
+      copyBtn.textContent = 'Copied ✓';
+      setTimeout(function () { copyBtn.textContent = original; }, 1800);
+    };
+    input.focus();
+    input.select();
+    input.setSelectionRange(0, 99999);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(input.value).then(done, function () {
+        try { document.execCommand('copy'); done(); } catch (e) {}
+      });
+    } else {
+      try { document.execCommand('copy'); done(); } catch (e) {}
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

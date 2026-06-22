@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your RSVP Dashboard — Evermore</title>
+<meta name="description" content="Your Evermore command center — watch RSVPs, headcounts, song requests and dietary notes roll in live, share your invite, and export your guest list.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- NAV (copy this on every page; change active link) -->
+<nav class="nav">
+  <div class="container">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="12" cy="16" r="8.5" stroke="#C06B4E" stroke-width="2"/>
+        <circle cx="20" cy="16" r="8.5" stroke="#7C8C73" stroke-width="2"/>
+      </svg>
+      Evermore
+    </a>
+    <div class="nav-links">
+      <a href="index.html#features">Features</a>
+      <a href="dashboard.html?w=demo">See a demo</a>
+      <a class="btn btn-primary nav-cta" href="create.html">Create your wedding</a>
+    </div>
+  </div>
+</nav>
+
+<!-- DASHBOARD HEADER -->
+<header class="hero" style="padding:clamp(2.4rem,7vw,4rem) 0 clamp(1.8rem,5vw,2.6rem)">
+  <svg class="botanical tl" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M50 95 C50 60 30 40 10 30 M50 75 C40 65 25 62 14 64 M50 60 C42 50 30 48 20 50 M50 80 C60 70 75 68 86 70" stroke="#7C8C73" stroke-width="1.6"/></svg>
+  <svg class="botanical br" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M50 95 C50 60 30 40 10 30 M50 75 C40 65 25 62 14 64 M50 60 C42 50 30 48 20 50 M50 80 C60 70 75 68 86 70" stroke="#C06B4E" stroke-width="1.6"/></svg>
+  <div class="container">
+    <p class="eyebrow">Your RSVP command center</p>
+    <h1 id="dashNames" style="margin-bottom:.2em">Loading…</h1>
+    <p class="lead center" id="dashSub" style="margin:0 auto"></p>
+  </div>
+</header>
+
+<!-- DASHBOARD BODY -->
+<section style="padding-top:0">
+  <div class="container">
+
+    <!-- Stats -->
+    <div class="stats" id="statsRow" style="margin-bottom:clamp(2rem,6vw,3rem)">
+      <div class="stat"><div class="num" id="stResponses">0</div><div class="lbl">Responses</div></div>
+      <div class="stat"><div class="num" id="stAttending">0</div><div class="lbl">Attending</div></div>
+      <div class="stat"><div class="num" id="stDeclined">0</div><div class="lbl">Declined</div></div>
+      <div class="stat"><div class="num" id="stGuests">0</div><div class="lbl">Total Guests</div></div>
+    </div>
+
+    <div class="grid" style="grid-template-columns:1fr;gap:24px;align-items:start">
+
+      <!-- RSVP list -->
+      <div>
+        <div class="flex between wrap" style="margin-bottom:1rem">
+          <h2 style="margin:0;font-size:clamp(1.6rem,4vw,2.2rem)">Who's coming</h2>
+          <button class="btn btn-ghost" id="exportBtn" type="button">⤓ Export CSV</button>
+        </div>
+        <div class="panel">
+          <ul class="list" id="rsvpList"></ul>
+          <div id="emptyState" class="center hide" style="padding:1.6rem 0">
+            <div style="font-family:var(--serif);font-size:2.6rem;line-height:1;color:var(--blush)">✦</div>
+            <h3 style="margin:.6rem 0 .3rem">No replies just yet</h3>
+            <p class="muted" style="margin:0 auto;max-width:34ch">Share your invite link or QR code below — RSVPs, headcounts and song requests will land here in real time.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Share panel -->
+      <div>
+        <h2 style="font-size:clamp(1.6rem,4vw,2.2rem)">Share &amp; collect</h2>
+        <div class="panel qr-card stack">
+          <img id="qrImg" alt="QR code linking to your wedding invitation" width="220" height="220">
+          <p class="muted" style="margin:0;font-size:.9rem">Guests scan this to view your invite and RSVP.</p>
+          <div class="field" style="margin:0;text-align:left">
+            <label for="shareLink">Your invite link</label>
+            <div class="flex" style="gap:.6rem;align-items:stretch">
+              <input class="input" id="shareLink" type="text" readonly style="flex:1">
+              <button class="btn btn-ghost" id="copyBtn" type="button" style="white-space:nowrap">Copy</button>
+            </div>
+            <p class="help" id="copyHelp">Send it on WhatsApp, email — anywhere your guests are.</p>
+          </div>
+          <div class="row" style="text-align:left">
+            <a class="btn btn-primary btn-block" id="linkInvite" href="#">View invitation</a>
+            <a class="btn btn-ghost btn-block" id="linkRsvp" href="#">RSVP page</a>
+            <a class="btn btn-ghost btn-block" id="linkScan" href="#">Photo wall</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="note" id="demoNote" style="margin-top:clamp(2rem,6vw,3rem)">Demo saves in your browser. Central storage for all couples comes with the backend.</div>
+
+  </div>
+</section>
+
+<!-- FOOTER (copy this on every page) -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">Evermore</div>
+        <p class="muted" style="color:#C3CCBC;max-width:34ch;margin-top:.6rem">Plan the day you'll remember forever. Made with care in South Africa.</p>
+        <span class="vendor-tag">♪ Powered sound by Cape Premier Audio</span>
+      </div>
+      <div>
+        <h4 style="color:#fff;font-family:var(--sans);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase">Product</h4>
+        <p style="margin:.3rem 0"><a href="create.html">Create a wedding</a></p>
+        <p style="margin:.3rem 0"><a href="dashboard.html?w=demo">Demo dashboard</a></p>
+        <p style="margin:.3rem 0"><a href="index.html#features">Features</a></p>
+      </div>
+      <div>
+        <h4 style="color:#fff;font-family:var(--sans);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase">Vendors</h4>
+        <p style="margin:.3rem 0"><a href="#">Cape Premier Audio</a></p>
+        <p style="margin:.3rem 0 0"><a href="create.html">Become a vendor</a></p>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Evermore · An early preview build · Built for Dean</div>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+<script>
+(function () {
+  // ---- Resolve the wedding id (param, else seeded demo) ----
+  var id = Evermore.param('w');
+  if (!id) id = Evermore.seedDemo();
+  var w = Evermore.getWedding(id);
+  if (!w) { id = Evermore.seedDemo(); w = Evermore.getWedding(id); }
+  Evermore.setCurrent(id);
+
+  // ---- Header ----
+  document.getElementById('dashNames').textContent = w.partnerA + ' & ' + w.partnerB;
+  var subBits = [];
+  if (w.date) subBits.push(Evermore.fmtDate(w.date));
+  if (w.venue) subBits.push(w.venue);
+  document.getElementById('dashSub').textContent = subBits.join('  ·  ');
+
+  // ---- Stats ----
+  var s = Evermore.stats(id);
+  document.getElementById('stResponses').textContent = s.responses;
+  document.getElementById('stAttending').textContent = s.attending;
+  document.getElementById('stDeclined').textContent = s.declined;
+  document.getElementById('stGuests').textContent = s.guests;
+
+  // ---- RSVP list ----
+  var rsvps = Evermore.getRSVPs(id);
+  var list = document.getElementById('rsvpList');
+  var empty = document.getElementById('emptyState');
+
+  function esc(t) {
+    return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  if (!rsvps.length) {
+    list.classList.add('hide');
+    empty.classList.remove('hide');
+  } else {
+    // Newest first
+    rsvps.slice().reverse().forEach(function (r) {
+      var li = document.createElement('li');
+
+      var left = document.createElement('div');
+      var who = document.createElement('div');
+      who.className = 'who';
+      who.textContent = r.name || 'Guest';
+      left.appendChild(who);
+
+      var metaBits = [];
+      if (r.attending === 'yes') {
+        var heads = parseInt(r.party, 10) || 1;
+        metaBits.push(heads === 1 ? 'Party of 1' : 'Party of ' + heads);
+      }
+      if (r.song) metaBits.push('♪ ' + r.song);
+      if (r.diet) metaBits.push('⊙ ' + r.diet);
+      if (metaBits.length) {
+        var meta = document.createElement('div');
+        meta.className = 'meta';
+        meta.innerHTML = metaBits.map(esc).join('  ·  ');
+        left.appendChild(meta);
+      }
+      li.appendChild(left);
+
+      var pill = document.createElement('span');
+      if (r.attending === 'yes') { pill.className = 'pill pill-yes'; pill.textContent = '✓ Coming'; }
+      else { pill.className = 'pill pill-no'; pill.textContent = "Can't make it"; }
+      li.appendChild(pill);
+
+      list.appendChild(li);
+    });
+  }
+
+  // ---- Share links ----
+  var base = Evermore.baseUrl();
+  var inviteUrl = base + 'invite.html?w=' + id;
+  document.getElementById('linkInvite').href = 'invite.html?w=' + id;
+  document.getElementById('linkRsvp').href = 'rsvp.html?w=' + id;
+  document.getElementById('linkScan').href = 'scan.html?w=' + id;
+
+  document.getElementById('qrImg').src = Evermore.qr(inviteUrl, 220);
+
+  var shareInput = document.getElementById('shareLink');
+  shareInput.value = inviteUrl;
+  shareInput.addEventListener('focus', function () { this.select(); });
+
+  // ---- Copy button ----
+  var copyBtn = document.getElementById('copyBtn');
+  var copyHelp = document.getElementById('copyHelp');
+  copyBtn.addEventListener('click', function () {
+    function done() {
+      var prev = copyBtn.textContent;
+      copyBtn.textContent = '✓ Copied';
+      copyHelp.textContent = 'Link copied to your clipboard.';
+      setTimeout(function () {
+        copyBtn.textContent = prev;
+        copyHelp.textContent = 'Send it on WhatsApp, email — anywhere your guests are.';
+      }, 2000);
+    }
+    function fallback() {
+      shareInput.removeAttribute('readonly');
+      shareInput.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      shareInput.setAttribute('readonly', 'readonly');
+      done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(inviteUrl).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+
+  // ---- Export CSV ----
+  document.getElementById('exportBtn').addEventListener('click', function () {
+    function cell(v) {
+      var t = String(v == null ? '' : v);
+      if (/[",\n]/.test(t)) t = '"' + t.replace(/"/g, '""') + '"';
+      return t;
+    }
+    var rows = [['Name', 'Attending', 'Party size', 'Song request', 'Dietary notes']];
+    rsvps.forEach(function (r) {
+      rows.push([
+        r.name || '',
+        r.attending === 'yes' ? 'Coming' : "Can't make it",
+        r.attending === 'yes' ? (parseInt(r.party, 10) || 1) : 0,
+        r.song || '',
+        r.diet || ''
+      ]);
+    });
+    var csv = rows.map(function (row) { return row.map(cell).join(','); }).join('\r\n');
+    var blob = new Blob(["﻿" + csv], { type: 'text/csv;charset=utf-8;' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    var safe = (w.partnerA + '-' + w.partnerB).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    a.href = url;
+    a.download = 'evermore-' + (safe || id) + '-rsvps.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  });
+})();
+</script>
+
+</body>
+</html>
