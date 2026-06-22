@@ -4,10 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Create your wedding — Evermore</title>
-<meta name="description" content="Choose a delicate invitation template, add your names, date and story, and get one beautiful shareable link in minutes — with Evermore. Free to begin.">
-<meta property="og:title" content="Create your wedding — Evermore">
-<meta property="og:description" content="Pick a design, add your details, and share one beautiful link. Your wedding website, ready in minutes.">
-<meta property="og:type" content="website">
+<meta name="description" content="Create your free wedding website and invitation in minutes — pick a design, add your details, share one link.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -15,11 +12,11 @@
 </head>
 <body>
 
-<!-- NAV (copy on every page) -->
 <nav class="nav">
   <div class="container">
     <a class="brand" href="index.html">Evermore</a>
     <div class="nav-links">
+      <a href="designs.html">Designs</a>
       <a href="index.html#how">How it works</a>
       <a href="dashboard.html?w=demo">Demo</a>
       <a class="btn btn-primary nav-cta" href="create.html">Create your wedding</a>
@@ -27,110 +24,69 @@
   </div>
 </nav>
 
-<!-- CLEAN CENTERED HEADER -->
-<header class="hero center">
-  <div class="container narrow reveal">
-    <p class="eyebrow">Begin</p>
+<header class="hero" style="padding-bottom:1.5rem">
+  <div class="container">
+    <p class="eyebrow">Free to begin</p>
     <h1>Create your <em>wedding</em></h1>
-    <p class="lead center" style="margin:.4rem auto 0">Choose a design you adore, add your details, and we'll give you a single beautiful link to share with everyone you love.</p>
+    <p class="lead center" style="margin:0 auto">Choose a design, add your details, and we'll give you a beautiful wedding website and invitation to share — plus save-the-dates and thank-you cards when you need them. All free.</p>
   </div>
 </header>
 
-<!-- FORM -->
-<section id="formSection" style="padding-top:0">
-  <div class="container narrow">
+<section style="padding-top:1rem">
+  <div class="container">
+    <div class="panel reveal" id="formPanel">
+      <p class="eyebrow" id="typeLabel">Your design</p>
+      <h3 class="mt0">Choose a design</h3>
+      <p class="help" style="margin-bottom:1.2rem">Tap one to select it — you can always change it later. <b id="designCount"></b></p>
+      <div class="design-grid" id="picker" style="margin-bottom:2rem"></div>
 
-    <!-- 1) TEMPLATE PICKER -->
-    <div class="panel reveal" style="margin-bottom:30px">
-      <p class="eyebrow">Your design</p>
-      <h3 style="margin-bottom:.2rem">Choose a template</h3>
-      <p class="muted" style="font-size:.95rem;margin-bottom:1.4rem">Tap a design — you can always change it later.</p>
-      <div class="tpl-grid" id="tplGrid"></div>
-    </div>
-
-    <!-- 2) DETAILS -->
-    <div class="panel reveal">
-      <p class="eyebrow">Your details</p>
-      <h3 style="margin-bottom:1.4rem">Tell us about your day</h3>
-      <form id="createForm" class="stack" novalidate>
+      <form id="form" class="stack">
         <div class="row row-2">
-          <div class="field" style="margin-bottom:0">
-            <label for="partnerA">Partner A</label>
-            <input class="input" id="partnerA" type="text" autocomplete="off" placeholder="Thandi">
-          </div>
-          <div class="field" style="margin-bottom:0">
-            <label for="partnerB">Partner B</label>
-            <input class="input" id="partnerB" type="text" autocomplete="off" placeholder="Liam">
-          </div>
+          <div class="field"><label>Partner one</label><input class="input" id="partnerA" required></div>
+          <div class="field"><label>Partner two</label><input class="input" id="partnerB" required></div>
         </div>
-        <div class="field" style="margin-bottom:0">
-          <label for="date">Wedding date</label>
-          <input class="input" id="date" type="date">
-        </div>
-        <div class="field" style="margin-bottom:0">
-          <label for="venue">Venue</label>
-          <input class="input" id="venue" type="text" autocomplete="off" placeholder="Boschendal Estate, Franschhoek">
-        </div>
-        <div class="field" style="margin-bottom:0">
-          <label for="story">Your story</label>
-          <textarea id="story" placeholder="A line or two about how you met, or what this day means to you."></textarea>
-          <p class="help">A gentle greeting for your guests. Optional.</p>
-        </div>
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Create our invitation</button>
-        <p id="formErr" class="help" style="color:var(--blush-deep)"></p>
+        <div class="field"><label>Wedding date</label><input class="input" id="date" type="date" required></div>
+        <div class="field"><label>Venue</label><input class="input" id="venue" placeholder="Where you'll say I do"></div>
+        <div class="field"><label>Your story <span class="muted">(optional)</span></label><textarea id="story" placeholder="How you got here…"></textarea></div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Create our wedding</button>
+        <p class="help" id="err" style="color:var(--blush-deep)"></p>
       </form>
     </div>
 
-    <p class="note reveal" style="margin-top:1.4rem">This early preview saves your wedding in this browser, so you can try the whole flow. Your shareable link works on this device — real cross-device saving arrives soon.</p>
-  </div>
-</section>
-
-<!-- SUCCESS (hidden until created) -->
-<section id="successSection" class="center hide">
-  <div class="container narrow">
-    <div class="panel reveal">
-      <p class="eyebrow">It's official</p>
-      <div class="script" style="font-size:clamp(2.6rem,11vw,3.6rem)">Your invitation is ready</div>
-      <p id="successCouple" class="lead center" style="margin:1rem auto 0"></p>
-      <div class="rule center"></div>
-
-      <div class="field" style="margin-bottom:1.2rem;text-align:left">
-        <label for="shareLink">Your shareable link</label>
-        <div class="row" style="grid-template-columns:1fr auto;gap:10px;align-items:stretch">
-          <input class="input" id="shareLink" type="text" readonly onclick="this.select()">
-          <button type="button" id="copyBtn" class="btn btn-ghost" style="white-space:nowrap">Copy</button>
+    <div class="panel reveal hide" id="successPanel">
+      <div class="center stack">
+        <p class="script" style="font-size:2.6rem">Your wedding is ready</p>
+        <p class="lead center" id="successSub" style="margin-inline:auto"></p>
+        <div class="qr-card"><img id="qr" alt="QR to your invitation" width="200" height="200"></div>
+        <div class="field" style="text-align:left">
+          <label>Your shareable invitation link</label>
+          <div class="flex wrap"><input class="input" id="shareLink" readonly style="flex:1;min-width:200px"><button class="btn btn-ghost" id="copyBtn" type="button">Copy</button></div>
+          <p class="help">Send it on WhatsApp, email — anywhere your guests are.</p>
         </div>
-        <p id="copyMsg" class="help">Send it on WhatsApp or email — guests open it to view your invitation and RSVP.</p>
-      </div>
-
-      <div class="hero-actions" style="margin-top:.4rem">
-        <a id="viewBtn" class="btn btn-primary btn-lg" href="#">View your invitation</a>
-        <a id="dashBtn" class="btn btn-ghost btn-lg" href="#">Open your dashboard</a>
+        <a class="btn btn-primary btn-block btn-lg" id="viewBtn" href="#">View your invitation</a>
+        <a class="btn btn-ghost btn-block" id="dashBtn" href="#">Open your dashboard</a>
+        <div class="note">This preview saves in your browser. Central storage across devices comes with the backend.</div>
       </div>
     </div>
-
-    <p class="note reveal" style="margin-top:1.4rem">The QR code for collecting your day-of photos lives on your dashboard — print it for the tables and watch the gallery fill up.</p>
   </div>
 </section>
 
-<!-- FOOTER (copy on every page) -->
 <footer>
   <div class="container">
     <div class="foot-grid">
       <div>
         <div class="foot-brand">Evermore</div>
-        <p class="muted" style="max-width:32ch;margin-top:.6rem">Plan the day you'll remember forever. Made with care in South Africa.</p>
+        <p class="muted" style="max-width:32ch;margin-top:.6rem">Wedding websites, invitations, save the dates &amp; thank-you cards — beautifully free.</p>
         <span class="vendor-tag">♪ Powered sound by Cape Premier Audio</span>
       </div>
       <div>
-        <h4>Product</h4>
-        <p style="margin:.4rem 0"><a href="create.html">Create a wedding</a></p>
+        <h4>Designs</h4>
+        <p style="margin:.4rem 0"><a href="designs.html">Browse all designs</a></p>
         <p style="margin:.4rem 0"><a href="dashboard.html?w=demo">Demo dashboard</a></p>
-        <p style="margin:.4rem 0"><a href="photos.html?w=demo">Photo wall</a></p>
+        <p style="margin:.4rem 0"><a href="index.html#how">How it works</a></p>
       </div>
       <div>
-        <h4>Company</h4>
-        <p style="margin:.4rem 0"><a href="index.html#how">How it works</a></p>
+        <h4>Vendors</h4>
         <p style="margin:.4rem 0"><a href="#">Cape Premier Audio</a></p>
         <p style="margin:.4rem 0"><a href="create.html">Become a vendor</a></p>
       </div>
@@ -141,92 +97,70 @@
 
 <script src="assets/app.js"></script>
 <script>
-(function () {
-  // photo preview per template
-  var PIC = { rose:'couple', ivory:'stair', gilded:'ballroom', botanical:'reception' };
-  var selectedKey = 'rose';
+(function(){
+  var designs = Evermore.designs;
+  var typeLabels = { website:'Wedding website', invitation:'Invitation', savedate:'Save the date', thankyou:'Thank-you card' };
+  var type = Evermore.param('type') || 'website';
+  var chosen = Evermore.param('design') || 'rose';
+  document.getElementById('typeLabel').textContent = (typeLabels[type] || 'Your') + ' design';
+  document.getElementById('designCount').textContent = designs.length + ' free designs';
 
-  // ---- Build the template picker (photo thumbs) ----
-  var grid = document.getElementById('tplGrid');
-  grid.innerHTML = Evermore.templates.map(function (t) {
-    return '<div class="tpl-thumb" data-key="' + t.key + '">' +
-             '<div class="photo" style="background-image:url(\'' + Evermore.photoFor(PIC[t.key], 500) + '\')"></div>' +
-             '<div class="cap">' + t.name + '</div>' +
-           '</div>';
+  function preview(d){
+    return '<div class="dz tpl-' + d.theme + '"><div class="dk">You\'re invited</div><div class="dn">Aim&eacute;e &amp; Tom</div><div class="dr"></div><div class="dd">14 . 11 . 2026</div></div><div class="cap"><b>' + d.name + '</b></div>';
+  }
+  var picker = document.getElementById('picker');
+  picker.innerHTML = designs.map(function(d){
+    return '<div class="design-card' + (d.key===chosen?' sel':'') + '" data-key="' + d.key + '" role="button" tabindex="0">' + preview(d) + '</div>';
   }).join('');
 
-  var thumbs = grid.querySelectorAll('.tpl-thumb');
-  function select(key) {
-    selectedKey = key;
-    thumbs.forEach(function (th) { th.classList.toggle('sel', th.getAttribute('data-key') === key); });
+  function select(key){
+    chosen = key;
+    [].forEach.call(picker.querySelectorAll('.design-card'), function(c){ c.classList.toggle('sel', c.getAttribute('data-key')===key); });
   }
-  thumbs.forEach(function (th) {
-    th.addEventListener('click', function () { select(th.getAttribute('data-key')); });
+  [].forEach.call(picker.querySelectorAll('.design-card'), function(c){
+    c.addEventListener('click', function(){ select(c.getAttribute('data-key')); });
+    c.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); select(c.getAttribute('data-key')); } });
   });
-  select('rose'); // default
 
-  // ---- Submit ----
-  var form = document.getElementById('createForm');
-  var err = document.getElementById('formErr');
-
-  form.addEventListener('submit', function (e) {
+  document.getElementById('form').addEventListener('submit', function(e){
     e.preventDefault();
-
-    var partnerA = document.getElementById('partnerA').value.trim();
-    var partnerB = document.getElementById('partnerB').value.trim();
+    var a = document.getElementById('partnerA').value.trim();
+    var b = document.getElementById('partnerB').value.trim();
     var date = document.getElementById('date').value;
-    var venue = document.getElementById('venue').value.trim();
-    var story = document.getElementById('story').value.trim();
-
-    if (!partnerA || !partnerB) { err.textContent = 'Please add both of your names.'; return; }
+    var err = document.getElementById('err');
+    if (!a || !b) { err.textContent = 'Please add both names.'; return; }
     if (!date) { err.textContent = 'Please choose your wedding date.'; return; }
-    err.textContent = '';
-
+    var d = Evermore.getDesign(chosen);
     var w = Evermore.createWedding({
-      partnerA: partnerA, partnerB: partnerB, date: date,
-      venue: venue, story: story, template: selectedKey
+      partnerA: a, partnerB: b, date: date,
+      venue: document.getElementById('venue').value.trim(),
+      story: document.getElementById('story').value.trim(),
+      template: d.theme, design: d.key, motif: d.motif
     });
     Evermore.setCurrent(w.id);
-
     var link = Evermore.baseUrl() + 'invite.html?w=' + w.id;
-    document.getElementById('successCouple').textContent =
-      w.partnerA + ' & ' + w.partnerB + '  ·  ' + Evermore.fmtDate(w.date);
+    document.getElementById('successSub').textContent = a + ' & ' + b + ' · ' + Evermore.fmtDate(date);
+    document.getElementById('qr').src = Evermore.qr(link, 200);
     document.getElementById('shareLink').value = link;
-    document.getElementById('viewBtn').setAttribute('href', 'invite.html?w=' + w.id);
-    document.getElementById('dashBtn').setAttribute('href', 'dashboard.html?w=' + w.id);
-
-    document.getElementById('formSection').classList.add('hide');
-    document.querySelector('header.hero').classList.add('hide');
-    var success = document.getElementById('successSection');
-    success.classList.remove('hide');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('viewBtn').href = 'invite.html?w=' + w.id;
+    document.getElementById('dashBtn').href = 'dashboard.html?w=' + w.id;
+    document.getElementById('formPanel').classList.add('hide');
+    var sp = document.getElementById('successPanel');
+    sp.classList.remove('hide');
     Evermore.reveal();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // ---- Copy link ----
-  var copyBtn = document.getElementById('copyBtn');
-  var copyMsg = document.getElementById('copyMsg');
-  copyBtn.addEventListener('click', function () {
-    var input = document.getElementById('shareLink');
-    input.select();
-    input.setSelectionRange(0, 99999);
-    function done() {
-      copyBtn.textContent = 'Copied ✓';
-      copyMsg.textContent = 'Link copied — paste it to your guests.';
-      setTimeout(function () { copyBtn.textContent = 'Copy'; }, 1800);
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(input.value).then(done, function () {
-        try { document.execCommand('copy'); done(); } catch (e) { copyMsg.textContent = 'Press ⌘/Ctrl + C to copy.'; }
-      });
-    } else {
-      try { document.execCommand('copy'); done(); } catch (e) { copyMsg.textContent = 'Press ⌘/Ctrl + C to copy.'; }
-    }
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    var inp = document.getElementById('shareLink');
+    var btn = document.getElementById('copyBtn');
+    function done(){ btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = 'Copy'; }, 1800); }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(inp.value).then(done, function(){ inp.select(); document.execCommand('copy'); done(); }); }
+    else { inp.select(); document.execCommand('copy'); done(); }
   });
 
   Evermore.reveal();
 })();
 </script>
-
 </body>
 </html>

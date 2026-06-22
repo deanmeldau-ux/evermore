@@ -20,6 +20,7 @@
   <div class="container">
     <a class="brand" href="index.html">Evermore</a>
     <div class="nav-links">
+      <a href="designs.html">Designs</a>
       <a href="index.html#how">How it works</a>
       <a href="dashboard.html?w=demo">Demo</a>
       <a class="btn btn-primary nav-cta" href="create.html">Create your wedding</a>
@@ -32,9 +33,9 @@
   <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1536113906904-15bfc5b63fc9?q=80&auto=format&fit=crop&w=1600')"></div>
   <div class="scrim"></div>
   <div class="inner">
-    <p class="eyebrow">Wedding planning, beautifully simple</p>
+    <p class="eyebrow">Free · websites, invitations &amp; thank-you cards</p>
     <h1>Say <em>I&nbsp;do</em>, beautifully.</h1>
-    <p class="lead center">Create a breathtaking wedding website, share it with a single link, watch the RSVPs arrive — and collect every photo from your guests on the day.</p>
+    <p class="lead center">Create a breathtaking wedding website and matching invitations, share them with a single link, track every RSVP — then send save-the-dates and thank-you cards too. All free, all in one place.</p>
     <div class="hero-actions">
       <a class="btn btn-light btn-lg" href="create.html">Create your wedding — free</a>
       <a class="btn btn-outline-light btn-lg" href="dashboard.html?w=demo">See a live demo</a>
@@ -114,16 +115,22 @@
   </div>
 </section>
 
-<!-- TEMPLATES TEASER -->
+<!-- WHAT YOU CAN MAKE -->
 <section>
   <div class="container">
     <div class="section-head reveal">
-      <p class="eyebrow">Designs you'll adore</p>
-      <h2>Delicate templates, <em>made yours</em></h2>
+      <p class="eyebrow">Everything, free</p>
+      <h2>Invitations, save the dates &amp; <em>thank-you cards</em></h2>
       <div class="rule"></div>
+      <p class="muted">Dozens of delicate designs across four collections — every single one free, with no watermarks.</p>
     </div>
-    <div class="tpl-grid reveal" id="tplTeaser"></div>
-    <div class="center" style="margin-top:2.4rem"><a class="btn btn-primary btn-lg" href="create.html">Browse templates &amp; begin</a></div>
+    <div class="grid reveal" style="grid-template-columns:1fr 1fr;gap:18px">
+      <a class="info-card" href="designs.html" style="text-decoration:none"><div class="ico">❖</div><h3>Wedding websites</h3><p class="muted">Your story, schedule, RSVP &amp; photo wall — a full site, beautifully done.</p></a>
+      <a class="info-card" href="designs.html" style="text-decoration:none"><div class="ico">✉</div><h3>Invitations</h3><p class="muted">Delicate digital invites your guests open and RSVP to in a tap.</p></a>
+      <a class="info-card" href="designs.html" style="text-decoration:none"><div class="ico">✦</div><h3>Save the dates</h3><p class="muted">Get the date in their diaries — share the moment you're engaged.</p></a>
+      <a class="info-card" href="designs.html" style="text-decoration:none"><div class="ico">❦</div><h3>Thank-you cards</h3><p class="muted">After the confetti, thank everyone with a card as lovely as the day.</p></a>
+    </div>
+    <div class="center" style="margin-top:2.4rem"><a class="btn btn-primary btn-lg" href="designs.html">Browse all designs</a></div>
   </div>
 </section>
 
@@ -214,13 +221,6 @@
 </footer>
 
 <script src="assets/app.js"></script>
-<script>
-  // template teaser thumbnails (photo + label)
-  var pics = { rose:'couple', ivory:'stair', gilded:'ballroom', botanical:'reception' };
-  document.getElementById('tplTeaser').innerHTML = Evermore.templates.map(function(t){
-    return '<a class="tpl-thumb" href="create.html"><div class="photo" style="background-image:url(\'' + Evermore.photoFor(pics[t.key],500) + '\')"></div><div class="cap">' + t.name + '</div></a>';
-  }).join('');
-  Evermore.reveal();
-</script>
+<script>Evermore.reveal();</script>
 </body>
 </html>

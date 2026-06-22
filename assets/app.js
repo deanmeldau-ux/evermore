@@ -62,12 +62,40 @@
     },
     getPhotos: function (weddingId) { var w = this.getWedding(weddingId); return w ? (w.photos || []) : []; },
 
-    /* templates couples can choose for their invitation */
+    /* base visual themes (invite applies the tpl-<key> class) */
     templates: [
-      { key: 'rose', name: 'Rosé', motif: '❀' },
-      { key: 'ivory', name: 'Blanc', motif: '✦' },
-      { key: 'gilded', name: 'Gilded', motif: '❦' },
-      { key: 'botanical', name: 'Botanical', motif: '✿' }
+      { key: 'rose', name: 'Rosé', motif: '❀' }, { key: 'ivory', name: 'Blanc', motif: '✦' },
+      { key: 'gilded', name: 'Gilded', motif: '❦' }, { key: 'botanical', name: 'Botanical', motif: '✿' },
+      { key: 'blush', name: 'Blush', motif: '❀' }, { key: 'sage', name: 'Sage', motif: '❧' },
+      { key: 'dusk', name: 'Dusk', motif: '✧' }, { key: 'noir', name: 'Noir', motif: '◆' },
+      { key: 'coral', name: 'Coral', motif: '❦' }, { key: 'sky', name: 'Sky', motif: '❖' }
+    ],
+    /* named design collections shown in the gallery + create picker (theme = which tpl-* to apply) */
+    designs: [
+      { key: 'rose', name: 'Rosé', theme: 'rose', motif: '❀' },
+      { key: 'blanc', name: 'Blanc', theme: 'ivory', motif: '✦' },
+      { key: 'gilded', name: 'Gilded', theme: 'gilded', motif: '❦' },
+      { key: 'botanical', name: 'Botanical', theme: 'botanical', motif: '✿' },
+      { key: 'eloise', name: 'Eloise', theme: 'blush', motif: '❀' },
+      { key: 'protea', name: 'Protea', theme: 'sage', motif: '✿' },
+      { key: 'fynbos', name: 'Fynbos', theme: 'sage', motif: '❧' },
+      { key: 'juliet', name: 'Juliet', theme: 'coral', motif: '❦' },
+      { key: 'celeste', name: 'Celeste', theme: 'sky', motif: '✧' },
+      { key: 'verbena', name: 'Verbena', theme: 'dusk', motif: '❀' },
+      { key: 'noir', name: 'Noir', theme: 'noir', motif: '◆' },
+      { key: 'amalfi', name: 'Amalfi', theme: 'sky', motif: '❖' },
+      { key: 'karoo', name: 'Karoo', theme: 'gilded', motif: '❧' },
+      { key: 'lumiere', name: 'Lumière', theme: 'ivory', motif: '✦' },
+      { key: 'marble', name: 'Marble', theme: 'noir', motif: '◇' },
+      { key: 'stellenbosch', name: 'Stellenbosch', theme: 'sage', motif: '❧' }
+    ],
+    getDesign: function (key) { for (var i = 0; i < this.designs.length; i++) { if (this.designs[i].key === key) return this.designs[i]; } return this.designs[0]; },
+    /* stationery categories (what you can make — all free) */
+    categories: [
+      { key: 'website', label: 'Wedding Websites' },
+      { key: 'invitation', label: 'Invitations' },
+      { key: 'savedate', label: 'Save the Dates' },
+      { key: 'thankyou', label: 'Thank You Cards' }
     ],
 
     /* ---- helpers ---- */

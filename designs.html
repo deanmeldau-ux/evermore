@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wedding designs — invitations, save the dates &amp; thank-you cards | Evermore</title>
+<meta name="description" content="Browse dozens of beautiful wedding designs — invitations, save the dates, thank-you cards and full wedding websites. Every one of them free with Evermore.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <a class="brand" href="index.html">Evermore</a>
+    <div class="nav-links">
+      <a href="designs.html">Designs</a>
+      <a href="index.html#how">How it works</a>
+      <a href="dashboard.html?w=demo">Demo</a>
+      <a class="btn btn-primary nav-cta" href="create.html">Create your wedding</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <p class="eyebrow">Free, every single one</p>
+    <h1>All wedding <em>designs</em></h1>
+    <p class="lead center" style="margin:0 auto 1.4rem">Invitations, save the dates, thank-you cards and full wedding websites — dozens of delicate designs to choose from, personalised in minutes. No paywalls, no watermarks, no catch.</p>
+    <a class="btn btn-primary btn-lg" href="create.html">Start free</a>
+  </div>
+</header>
+
+<section style="padding-top:0">
+  <div class="container">
+    <div class="cat-nav" id="chips"></div>
+    <div id="gallery"></div>
+    <div class="center" style="margin-top:3rem">
+      <p class="script" style="font-size:2.2rem">Found one you love?</p>
+      <p class="lead center" style="margin:.6rem auto 1.4rem">Make it yours in minutes — free.</p>
+      <a class="btn btn-primary btn-lg" href="create.html">Create your wedding</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">Evermore</div>
+        <p class="muted" style="max-width:32ch;margin-top:.6rem">Wedding websites, invitations, save the dates &amp; thank-you cards — beautifully free. Made in South Africa.</p>
+        <span class="vendor-tag">♪ Powered sound by Cape Premier Audio</span>
+      </div>
+      <div>
+        <h4>Designs</h4>
+        <p style="margin:.4rem 0"><a href="designs.html">Invitations</a></p>
+        <p style="margin:.4rem 0"><a href="designs.html">Save the dates</a></p>
+        <p style="margin:.4rem 0"><a href="designs.html">Thank-you cards</a></p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <p style="margin:.4rem 0"><a href="create.html">Create a wedding</a></p>
+        <p style="margin:.4rem 0"><a href="dashboard.html?w=demo">Demo dashboard</a></p>
+        <p style="margin:.4rem 0"><a href="index.html#how">How it works</a></p>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Evermore · An early preview · Built for Dean</div>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+<script>
+(function(){
+  var cats = Evermore.categories;
+  var designs = Evermore.designs;
+  var photoKeys = ['couple','story','ceremony','reception','joy','detail','ballroom','aisle','water','stair','couple','story','ceremony','reception','joy','detail'];
+  var NAMES = 'Aim&eacute;e &amp; Tom';
+
+  function face(d, cat, i){
+    var theme = 'tpl-' + d.theme;
+    if (cat === 'website') {
+      var url = Evermore.photoFor(photoKeys[i % photoKeys.length], 500);
+      return '<div class="dz photo ' + theme + '" style="background-image:url(\'' + url + '\')">' +
+        '<div class="dk">Wedding website</div><div class="dn">' + NAMES + '</div><div class="dr"></div><div class="dd">Our story · RSVP · Photos</div></div>';
+    }
+    if (cat === 'invitation') {
+      return '<div class="dz ' + theme + '"><div class="dk">You\'re invited</div><div class="dn">' + NAMES + '</div><div class="dr"></div><div class="dd">14 . 11 . 2026</div></div>';
+    }
+    if (cat === 'savedate') {
+      return '<div class="dz ' + theme + '"><div class="dk">Save the date</div><div class="dn">' + NAMES + '</div><div class="dr"></div><div class="dd">14 . 11 . 2026</div></div>';
+    }
+    // thankyou
+    return '<div class="dz ' + theme + '"><div class="dm">' + d.motif + '</div><div class="dn">Thank you</div><div class="dr"></div><div class="dd">With love, A &amp; T</div></div>';
+  }
+
+  function card(d, cat, i){
+    return '<a class="design-card" href="create.html?design=' + d.key + '&type=' + cat + '">' +
+      face(d, cat, i) + '<div class="cap"><b>' + d.name + '</b></div></a>';
+  }
+
+  function buildGallery(){
+    var html = '';
+    cats.forEach(function(c){
+      html += '<div class="cat-block" data-cat="' + c.key + '">';
+      html += '<div class="cat-head"><h3>' + c.label + '</h3><span class="free">Free · ' + designs.length + ' designs</span></div>';
+      html += '<div class="design-grid">' + designs.map(function(d,i){ return card(d, c.key, i); }).join('') + '</div>';
+      html += '</div>';
+    });
+    document.getElementById('gallery').innerHTML = html;
+  }
+
+  function buildChips(){
+    var chips = [{key:'all',label:'All designs'}].concat(cats.map(function(c){return {key:c.key,label:c.label};}));
+    document.getElementById('chips').innerHTML = chips.map(function(c,i){
+      return '<button class="chip' + (i===0?' on':'') + '" data-f="' + c.key + '">' + c.label + '</button>';
+    }).join('');
+    document.querySelectorAll('.chip').forEach(function(ch){
+      ch.addEventListener('click', function(){
+        document.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on');});
+        ch.classList.add('on');
+        var f = ch.getAttribute('data-f');
+        document.querySelectorAll('.cat-block').forEach(function(b){
+          b.style.display = (f === 'all' || b.getAttribute('data-cat') === f) ? '' : 'none';
+        });
+        window.scrollTo({top: document.getElementById('chips').offsetTop - 80, behavior:'smooth'});
+      });
+    });
+  }
+
+  buildGallery();
+  buildChips();
+})();
+</script>
+</body>
+</html>
