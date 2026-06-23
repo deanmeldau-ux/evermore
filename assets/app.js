@@ -173,6 +173,115 @@
       var self = this;
       seed.forEach(function (s) { self.addRSVP('demo', s); });
       return 'demo';
+    },
+
+    /* ===== Evermore AI — wedding planner (client-side, free, instant) ===== */
+    Planner: {
+      VIBES: {
+        romantic: { name: 'Romantic & Soft', design: 'eloise', palette: [['#F4E6E1', 'Blush'], ['#C0857C', 'Dusty rose'], ['#C2A878', 'Soft gold']] },
+        classic: { name: 'Classic & Timeless', design: 'blanc', palette: [['#FCFAF5', 'Ivory'], ['#B89B6E', 'Antique gold'], ['#3B3A36', 'Ink']] },
+        modern: { name: 'Modern & Minimal', design: 'noir', palette: [['#F2F0EC', 'Stone'], ['#2B2B2B', 'Charcoal'], ['#7A7468', 'Taupe']] },
+        garden: { name: 'Garden & Botanical', design: 'protea', palette: [['#ECF0E9', 'Sage'], ['#8A9A7B', 'Eucalyptus'], ['#B08A74', 'Clay']] },
+        glam: { name: 'Glamorous & Gold', design: 'gilded', palette: [['#FAF4E9', 'Champagne'], ['#BE9E62', 'Gold'], ['#4A4030', 'Bronze']] },
+        coastal: { name: 'Coastal & Airy', design: 'celeste', palette: [['#E9EEF1', 'Sky'], ['#7C99A8', 'Dusty blue'], ['#C2A878', 'Sand']] }
+      },
+      BUDGET: [
+        ['Venue & catering', 0.45], ['Photography & video', 0.12], ['Attire & beauty', 0.09],
+        ['Flowers & décor', 0.09], ['Music & sound — Cape Premier Audio', 0.08], ['Rings', 0.06],
+        ['Cake & treats', 0.04], ['Stationery — free with Evermore', 0], ['Buffer & extras', 0.07]
+      ],
+      money: function (n) { return 'R' + Math.round(n).toLocaleString('en-ZA'); },
+      _when: function (dateStr, m) {
+        if (!dateStr) return null;
+        var d = new Date(dateStr + 'T12:00:00'); if (isNaN(d)) return null;
+        d.setMonth(d.getMonth() - m);
+        return d.toLocaleDateString('en-ZA', { month: 'long', year: 'numeric' });
+      },
+      season: function (dateStr) {
+        if (!dateStr) return '';
+        var mo = new Date(dateStr + 'T12:00:00').getMonth();
+        if (isNaN(mo)) return '';
+        if (mo >= 11 || mo <= 1) return 'summer (warm, long evenings — plan shade and water for guests)';
+        if (mo <= 4) return 'autumn (golden light and mild days — gorgeous for photos)';
+        if (mo <= 7) return 'winter (crisp and clear inland — a cosy indoor reception shines)';
+        return 'spring (blossoms and fresh air — keep a wet-weather backup inland)';
+      },
+      plan: function (inp) {
+        inp = inp || {};
+        var v = this.VIBES[inp.vibe] || this.VIBES.romantic;
+        var guests = parseInt(inp.guests, 10) || 100;
+        var budget = parseInt(inp.budget, 10) || 150000;
+        var perHead = budget * 0.45 / Math.max(guests, 1);
+        var names = (inp.partnerA && inp.partnerB) ? (inp.partnerA + ' & ' + inp.partnerB) : 'you two';
+        var prov = inp.province ? (' in ' + inp.province) : '';
+        var intro = 'Congratulations! Here is a plan for ' + names + "'s " + v.name.toLowerCase() +
+          ' wedding — around ' + guests + ' guests on a ' + this.money(budget) + ' budget' + prov +
+          '. That is roughly ' + this.money(perHead) + ' per guest for venue & catering. ' +
+          'Below is your timeline, where every rand could go, a palette I love for you, and some draft wording to start from.';
+        var steps = [
+          [12, 'Lock the essentials', 'Set your date & budget, secure your venue, and create your free Evermore website.'],
+          [9, 'Book your key vendors', 'Photographer, caterer and sound (Cape Premier Audio). Begin shopping for attire.'],
+          [6, 'Send save-the-dates', 'Share your Evermore save-the-date and open RSVPs nice and early.'],
+          [4, 'Send your invitations', 'Send the Evermore invitation link; finalise décor, flowers and the menu.'],
+          [3, 'Confirm the details', 'Order rings, build your seating plan, lock catering numbers.'],
+          [1, 'Final touches', 'Last fitting, confirm the run-sheet with vendors, chase any late RSVPs.'],
+          [0.25, 'The week of', 'Print your photo-wall QR for the tables, brief your MC, and breathe.'],
+          [-1, 'After the day', 'Send your Evermore thank-you cards while the memories are fresh.']
+        ];
+        var rel = { 12: 'About a year out', 9: '~9 months out', 6: '~6 months out', 4: '~4 months out', 3: '~3 months out', 1: '1 month out', '0.25': 'The week of', '-1': 'Just married' };
+        var self = this;
+        var timeline = steps.map(function (s) {
+          var when = s[0] === 0.25 ? 'The week of' : self._when(inp.date, s[0]);
+          return { when: when || rel[s[0]], title: s[1], detail: s[2] };
+        });
+        var budgetRows = this.BUDGET.map(function (b) { return { label: b[0], pct: Math.round(b[1] * 100), amount: b[1] * budget, free: b[1] === 0 }; });
+        var dateNice = inp.date ? new Date(inp.date + 'T12:00:00').toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' }) : 'our wedding day';
+        var A = inp.partnerA || 'Aimée', B = inp.partnerB || 'Tom';
+        var wording = {
+          savedate: 'Save the date! ' + A + ' & ' + B + ' are getting married on ' + dateNice + '. An invitation, with all the details, is on its way.',
+          invitation: 'Together with their families, ' + A + ' & ' + B + ' joyfully invite you to celebrate their wedding on ' + dateNice + (inp.venue ? ' at ' + inp.venue : '') + '. Kindly RSVP through our website.',
+          thankyou: 'With all our love and gratitude — thank you for celebrating our wedding with us, and for the gift of your presence. ' + A + ' & ' + B + '.'
+        };
+        var tips = [];
+        tips.push(guests > 150 ? 'With ' + guests + ' guests, prioritise a venue with room to breathe and a generous sound setup — Cape Premier Audio can scale to a big room.' : 'A ' + guests + '-guest wedding feels wonderfully intimate — you can spend more per head on the details that matter.');
+        tips.push('Your stationery — save-the-dates, invitations and thank-you cards — is free on Evermore, which frees up roughly ' + this.money(budget * 0.03) + ' most couples spend on paper.');
+        var seas = this.season(inp.date);
+        if (seas) tips.push('Your date falls in ' + seas + '.');
+        return { intro: intro, design: v.design, paletteName: v.name, palette: v.palette, perHead: perHead, timeline: timeline, budget: budgetRows, wording: wording, tips: tips };
+      },
+      ask: function (q, ctx) {
+        ctx = ctx || {}; q = (q || '').toLowerCase();
+        var m = this.money, has = function (arr) { for (var i = 0; i < arr.length; i++) if (q.indexOf(arr[i]) > -1) return true; return false; };
+        var bud = parseInt(ctx.budget, 10) || 0, gst = parseInt(ctx.guests, 10) || 0;
+        if (has(['budget', 'cost', 'afford', 'spend', 'money', 'price', 'expensive'])) {
+          return (bud ? 'On your ' + m(bud) + ' budget, a healthy split is about 45% venue & catering (' + m(bud * 0.45) + '), 12% photography (' + m(bud * 0.12) + '), and 8% music & sound (' + m(bud * 0.08) + '). ' : 'A reliable split is ~45% venue & catering, 12% photography, 9% attire, 9% flowers & décor, 8% music. ') + 'Keep a 7% buffer — there is always a surprise. And remember: every Evermore design is free, so stationery costs you nothing.';
+        }
+        if (has(['when', 'timeline', 'how long', 'start', 'months', 'plan ahead', 'early'])) {
+          return 'Aim for about 12 months: lock the venue first, book your photographer and Cape Premier Audio around 9 months out, save-the-dates at 6 months, invitations at 4, and confirm final numbers at 3. Build your free Evermore site early so RSVPs gather as you go.';
+        }
+        if (has(['guest', 'invite list', 'how many', 'rsvp'])) {
+          return (gst ? 'For ' + gst + ' guests, ' : '') + 'draft an A-list and a B-list, and let RSVPs guide the B-list. Evermore tracks every reply, headcount, song request and dietary note automatically — no spreadsheet needed.';
+        }
+        if (has(['season', 'weather', 'month', 'rain', 'hot', 'cold', 'when should'])) {
+          var s = this.season(ctx.date); return s ? 'Your date lands in ' + s + ' Either way, have a graceful wet-weather plan if any part is outdoors.' : 'In South Africa, autumn (Mar–May) gives golden light and mild days; spring (Sep–Nov) is lush but keep a wet-weather backup inland.';
+        }
+        if (has(['dress', 'attire', 'wear', 'dress code', 'suit'])) {
+          return 'Set the tone with a clear dress code on your invitation — "garden formal" or "black tie optional" tells guests exactly what to wear. Add a layer note for evening, especially for outdoor or winter weddings.';
+        }
+        if (has(['vendor', 'photographer', 'dj', 'sound', 'music', 'band', 'caterer', 'flowers', 'florist'])) {
+          return 'Book your non-negotiables first — venue, photographer, and sound. For audio, Cape Premier Audio is the trusted vendor on Evermore: ceremony mics, speeches and a dancefloor that actually sounds good. Lock vendors by ~9 months out.';
+        }
+        if (has(['food', 'catering', 'menu', 'drinks', 'bar', 'cake'])) {
+          return (bud ? 'Budget around ' + m(bud * 0.45) + ' for venue & catering combined' + (gst ? ' (~' + m(bud * 0.45 / Math.max(gst, 1)) + ' per guest)' : '') + '. ' : '') + 'A seated dinner feels formal; food stations feel relaxed and let guests mingle. Always confirm dietary needs — Evermore collects these at RSVP.';
+        }
+        if (has(['save the date', 'invitation', 'thank you', 'stationery', 'card'])) {
+          return 'All free on Evermore: pick a design, personalise it, and share your invitation with one link. Save-the-dates go out ~6 months ahead, invitations ~4 months, and thank-you cards just after the day.';
+        }
+        if (has(['photo', 'picture', 'qr', 'gallery'])) {
+          return 'On the day, print your Evermore photo-wall QR for the tables. Guests scan it and the photos they take flow straight into your private gallery — hundreds of moments you would never have seen.';
+        }
+        return "I can help with your budget, timeline, guest list, vendors, food, the season, attire and your stationery wording — just ask. Or tell me your date, guest count and budget above and I'll build you a full plan.";
+      }
     }
   };
 

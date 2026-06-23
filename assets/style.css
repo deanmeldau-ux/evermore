@@ -299,3 +299,37 @@ footer a:hover{color:var(--blush)}
 .design-card .cap b{color:var(--ink);font-weight:400}
 .design-card.sel{border-color:var(--blush);box-shadow:0 0 0 3px rgba(201,154,147,.45)}
 .design-card.sel .cap{color:var(--blush-deep)}
+.design-card .cap .view{display:block;font-size:.54rem;letter-spacing:.2em;color:var(--blush);margin-top:.25rem}
+
+/* Sample preview banner */
+.sample-bar{background:var(--ink);color:#fff;text-align:center;padding:.7rem 1rem;font-size:.7rem;letter-spacing:.08em}
+.sample-bar b{color:#fff;font-weight:400}
+.sample-bar a{color:#fff;text-decoration:underline;margin-left:.6rem;white-space:nowrap}
+
+/* ===== AI Wedding Planner ===== */
+.ai-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blush-deep);background:var(--rose);border:1px solid var(--line);border-radius:100px;padding:.4rem .9rem}
+.ai-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--blush);box-shadow:0 0 0 4px rgba(201,154,147,.25)}
+.plan-out{margin-top:1.4rem}
+.plan-intro{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--ink);line-height:1.6;background:var(--rose);border-radius:var(--radius);padding:1.4rem 1.5rem}
+.budget-row{display:flex;align-items:center;gap:.8rem;margin:.55rem 0}
+.budget-row .lbl{width:40%;font-size:.85rem;color:var(--ink)}
+.bar{flex:1;height:9px;background:var(--line);border-radius:100px;overflow:hidden}
+.bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--blush),var(--gold-soft));border-radius:100px;transition:width 1s ease}
+.budget-row .amt{width:96px;text-align:right;font-size:.82rem;color:var(--blush-deep);font-variant-numeric:tabular-nums}
+.swatch-row{display:flex;gap:10px;justify-content:center;margin:.6rem 0 0}
+.swatch-row .sw{width:38px;height:38px;border-radius:50%;border:1px solid rgba(0,0,0,.06);box-shadow:var(--shadow-sm)}
+.wording{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:1.2rem 1.3rem}
+.wording h4{margin:.1rem 0 .5rem;font-size:1.2rem}
+.wording p{font-family:var(--serif);font-style:italic;color:var(--ink);margin:0;line-height:1.7}
+
+/* chat */
+.chat{max-width:640px;margin:0 auto}
+.chat-log{display:flex;flex-direction:column;gap:.2rem;margin-bottom:1rem}
+.msg{max-width:86%;padding:.8rem 1.1rem;border-radius:18px;margin:.35rem 0;font-size:.95rem;line-height:1.6}
+.msg.ai{background:var(--rose);color:var(--ink);border-bottom-left-radius:5px;align-self:flex-start}
+.msg.me{background:var(--blush);color:#fff;border-bottom-right-radius:5px;align-self:flex-end}
+.suggests{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.suggest{font-size:.66rem;letter-spacing:.06em;padding:.5rem .9rem;border:1px solid var(--line);border-radius:100px;background:var(--paper);cursor:pointer;color:var(--ink)}
+.suggest:hover{border-color:var(--blush);color:var(--blush-deep)}
+.chat-input{display:flex;gap:.6rem}
+.chat-input input{flex:1}

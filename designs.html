@@ -16,9 +16,8 @@
   <div class="container">
     <a class="brand" href="index.html">Evermore</a>
     <div class="nav-links">
+      <a href="planner.html">AI&nbsp;Planner</a>
       <a href="designs.html">Designs</a>
-      <a href="index.html#how">How it works</a>
-      <a href="dashboard.html?w=demo">Demo</a>
       <a class="btn btn-primary nav-cta" href="create.html">Create your wedding</a>
     </div>
   </div>
@@ -96,8 +95,8 @@
   }
 
   function card(d, cat, i){
-    return '<a class="design-card" href="create.html?design=' + d.key + '&type=' + cat + '">' +
-      face(d, cat, i) + '<div class="cap"><b>' + d.name + '</b></div></a>';
+    return '<a class="design-card" href="invite.html?design=' + d.key + '&sample=1">' +
+      face(d, cat, i) + '<div class="cap"><b>' + d.name + '</b><span class="view">Open sample site →</span></div></a>';
   }
 
   function buildGallery(){

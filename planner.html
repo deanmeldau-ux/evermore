@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evermore AI — your personal wedding planner</title>
+<meta name="description" content="Meet Evermore AI — your free personal wedding planner. Get a tailored timeline, budget breakdown, design and wording in seconds, and ask anything about planning your day.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <a class="brand" href="index.html">Evermore</a>
+    <div class="nav-links">
+      <a href="planner.html">AI&nbsp;Planner</a>
+      <a href="designs.html">Designs</a>
+      <a class="btn btn-primary nav-cta" href="create.html">Create your wedding</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero-photo" style="min-height:78vh">
+  <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1525441273400-056e9c7517b3?q=80&auto=format&fit=crop&w=1600')"></div>
+  <div class="scrim"></div>
+  <div class="inner">
+    <span class="ai-badge" style="background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.4);color:#fff"><span class="dot"></span> Evermore AI</span>
+    <h1 style="margin-top:1rem">Your personal <em>wedding planner</em></h1>
+    <p class="lead center">Tell it your date, guests and budget — and in seconds get a tailored timeline, a budget that adds up, a design picked for you, and your wording written. Then ask it anything. Free.</p>
+    <a class="btn btn-light btn-lg" href="#tool">Plan my wedding</a>
+  </div>
+</header>
+
+<!-- THE PLANNER TOOL -->
+<section id="tool">
+  <div class="container narrow">
+    <div class="panel reveal" id="inputPanel">
+      <span class="ai-badge"><span class="dot"></span> Tell me about your day</span>
+      <div class="row row-2" style="margin-top:1.2rem">
+        <div class="field"><label>Partner one <span class="muted">(optional)</span></label><input class="input" id="pA" placeholder="e.g. Aimée"></div>
+        <div class="field"><label>Partner two <span class="muted">(optional)</span></label><input class="input" id="pB" placeholder="e.g. Tom"></div>
+      </div>
+      <div class="row row-2">
+        <div class="field"><label>Wedding date</label><input class="input" id="date" type="date"></div>
+        <div class="field"><label>Roughly how many guests?</label><input class="input" id="guests" type="number" min="2" placeholder="120"></div>
+      </div>
+      <div class="row row-2">
+        <div class="field"><label>Total budget (Rand)</label><input class="input" id="budget" type="number" min="0" placeholder="150000"></div>
+        <div class="field"><label>Province <span class="muted">(optional)</span></label>
+          <select id="province"><option value="">Anywhere in SA</option><option>Western Cape</option><option>Gauteng</option><option>KwaZulu-Natal</option><option>Eastern Cape</option><option>Free State</option><option>Mpumalanga</option><option>Limpopo</option><option>North West</option><option>Northern Cape</option></select>
+        </div>
+      </div>
+      <div class="field"><label>Your style</label>
+        <select id="vibe">
+          <option value="romantic">Romantic &amp; soft</option>
+          <option value="classic">Classic &amp; timeless</option>
+          <option value="modern">Modern &amp; minimal</option>
+          <option value="garden">Garden &amp; botanical</option>
+          <option value="glam">Glamorous &amp; gold</option>
+          <option value="coastal">Coastal &amp; airy</option>
+        </select>
+      </div>
+      <button class="btn btn-primary btn-block btn-lg" id="buildBtn">Build my plan ✨</button>
+    </div>
+
+    <div class="plan-out hide" id="planOut"></div>
+  </div>
+</section>
+
+<!-- ASK THE PLANNER -->
+<section class="bg-rose">
+  <div class="container">
+    <div class="section-head reveal"><span class="ai-badge"><span class="dot"></span> Ask Evermore AI</span><h2 style="margin-top:1rem">Ask me anything</h2><div class="rule center"></div></div>
+    <div class="chat reveal">
+      <div class="chat-log" id="chatLog"></div>
+      <div class="suggests" id="suggests"></div>
+      <div class="chat-input">
+        <input class="input" id="chatIn" placeholder="e.g. How should we split our budget?">
+        <button class="btn btn-primary" id="sendBtn">Ask</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">Evermore</div>
+        <p class="muted" style="max-width:32ch;margin-top:.6rem">Wedding websites, invitations, save the dates &amp; thank-you cards — beautifully free, with an AI planner built in.</p>
+        <span class="vendor-tag">♪ Powered sound by Cape Premier Audio</span>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <p style="margin:.4rem 0"><a href="designs.html">All designs</a></p>
+        <p style="margin:.4rem 0"><a href="planner.html">AI planner</a></p>
+        <p style="margin:.4rem 0"><a href="create.html">Create your wedding</a></p>
+      </div>
+      <div>
+        <h4>Demo</h4>
+        <p style="margin:.4rem 0"><a href="dashboard.html?w=demo">Dashboard</a></p>
+        <p style="margin:.4rem 0"><a href="photos.html?w=demo">Photo wall</a></p>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Evermore · An early preview · Built for Dean</div>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+<script>
+(function(){
+  var P = Evermore.Planner;
+  function val(id){ return document.getElementById(id).value.trim(); }
+  function ctx(){ return { partnerA:val('pA'), partnerB:val('pB'), date:val('date'), guests:val('guests'), budget:val('budget'), province:val('province'), vibe:val('vibe') }; }
+
+  // ---- build plan ----
+  document.getElementById('buildBtn').addEventListener('click', function(){
+    var plan = P.plan(ctx());
+    var d = Evermore.getDesign(plan.design);
+    var sampleHref = 'invite.html?design=' + d.key + '&sample=1';
+    var html = '';
+    html += '<div class="plan-intro reveal">' + plan.intro + '</div>';
+
+    // recommended design
+    html += '<div class="reveal" style="margin-top:2rem"><span class="ai-badge"><span class="dot"></span> Your design</span>';
+    html += '<div class="split" style="margin-top:1rem;align-items:center">';
+    html += '<a class="design-card" href="' + sampleHref + '"><div class="dz tpl-' + d.theme + '"><div class="dk">You\'re invited</div><div class="dn">' + (ctx().partnerA||'Aim&eacute;e') + ' &amp; ' + (ctx().partnerB||'Tom') + '</div><div class="dr"></div><div class="dd">Your date</div></div><div class="cap"><b>' + d.name + '</b><span class="view">Open sample website →</span></div></a>';
+    html += '<div class="txt"><h3 class="mt0">' + plan.paletteName + '</h3><p class="muted">I picked the <b>' + d.name + '</b> design for your style. Here is the palette I would build around:</p><div class="swatch-row">' + plan.palette.map(function(p){return '<span class="sw" style="background:'+p[0]+'" title="'+p[1]+'"></span>';}).join('') + '</div><a class="btn btn-ghost" href="' + sampleHref + '" style="margin-top:1.2rem">Open a sample website</a></div>';
+    html += '</div></div>';
+
+    // timeline
+    html += '<div class="reveal" style="margin-top:2.6rem"><span class="ai-badge"><span class="dot"></span> Your timeline</span><div class="timeline" style="margin-top:1.4rem">';
+    plan.timeline.forEach(function(t){ html += '<div class="tl"><div class="t">' + t.when + '</div><h4>' + t.title + '</h4><p>' + t.detail + '</p></div>'; });
+    html += '</div></div>';
+
+    // budget
+    html += '<div class="reveal" style="margin-top:2.6rem"><span class="ai-badge"><span class="dot"></span> Where the budget goes</span><div style="margin-top:1.4rem">';
+    plan.budget.forEach(function(b){
+      var amt = b.free ? 'Free' : P.money(b.amount);
+      html += '<div class="budget-row"><span class="lbl">' + b.label + '</span><span class="bar"><i style="width:' + Math.max(b.pct,3) + '%"></i></span><span class="amt">' + amt + '</span></div>';
+    });
+    html += '</div></div>';
+
+    // wording
+    html += '<div class="reveal" style="margin-top:2.6rem"><span class="ai-badge"><span class="dot"></span> Wording, drafted for you</span><div class="grid grid-3" style="margin-top:1.4rem">';
+    html += '<div class="wording"><h4>Save the date</h4><p>' + plan.wording.savedate + '</p></div>';
+    html += '<div class="wording"><h4>Invitation</h4><p>' + plan.wording.invitation + '</p></div>';
+    html += '<div class="wording"><h4>Thank you</h4><p>' + plan.wording.thankyou + '</p></div>';
+    html += '</div></div>';
+
+    // tips
+    if (plan.tips.length){ html += '<div class="reveal note" style="margin-top:2rem">💡 ' + plan.tips.join('<br><br>💡 ') + '</div>'; }
+
+    // CTA
+    html += '<div class="center reveal" style="margin-top:2.4rem"><p class="script" style="font-size:2.2rem">Love it?</p><a class="btn btn-primary btn-lg" href="create.html?design=' + d.key + '">Create your wedding with this plan</a></div>';
+
+    var out = document.getElementById('planOut');
+    out.innerHTML = html;
+    out.classList.remove('hide');
+    Evermore.reveal();
+    out.scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+
+  // ---- chat ----
+  var log = document.getElementById('chatLog');
+  function bubble(text, who){ var d=document.createElement('div'); d.className='msg '+who; d.innerHTML=text; log.appendChild(d); log.scrollTop=log.scrollHeight; return d; }
+  function ai(text){ var t=bubble('…','ai'); setTimeout(function(){ t.innerHTML=text; log.scrollTop=log.scrollHeight; }, 450); }
+  bubble("Hi! I'm Evermore AI 💛 Tell me about your day above and I'll build your plan — or ask me anything about weddings right here.", 'ai');
+
+  var qs = ['How should we split our budget?', 'When should we start planning?', 'What should guests wear?', 'Which season is best?'];
+  document.getElementById('suggests').innerHTML = qs.map(function(q){ return '<button class="suggest">' + q + '</button>'; }).join('');
+  function send(q){ if(!q) return; bubble(q.replace(/</g,'&lt;'), 'me'); ai(P.ask(q, ctx())); document.getElementById('chatIn').value=''; }
+  document.querySelectorAll('.suggest').forEach(function(b){ b.addEventListener('click', function(){ send(b.textContent); }); });
+  document.getElementById('sendBtn').addEventListener('click', function(){ send(val('chatIn')); });
+  document.getElementById('chatIn').addEventListener('keydown', function(e){ if(e.key==='Enter'){ send(val('chatIn')); } });
+
+  Evermore.reveal();
+})();
+</script>
+</body>
+</html>

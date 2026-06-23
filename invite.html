@@ -143,9 +143,21 @@
 <script src="assets/app.js"></script>
 <script>
 (function(){
-  var id = Evermore.param('w') || Evermore.currentId();
-  if (!id) { id = Evermore.seedDemo(); }
-  var w = Evermore.getWedding(id);
+  var sampleKey = Evermore.param('design');
+  var sample = !!sampleKey;
+  var id, w;
+  if (sample) {
+    var sd = Evermore.getDesign(sampleKey);
+    id = 'demo';
+    w = { partnerA: 'Aimée', partnerB: 'Tom', date: '2026-11-14', venue: 'Boschendal Estate, Franschhoek', story: 'Two years, a thousand cups of coffee, and one very good yes — this is the start of our forever.', template: sd.theme, design: sd.key };
+    var bar = document.createElement('div');
+    bar.className = 'sample-bar';
+    bar.innerHTML = '<b>Sample design · ' + sd.name + '</b> — this is how your website could look.<a href="create.html?design=' + sd.key + '">Make it yours, free →</a>';
+    document.body.insertBefore(bar, document.body.firstChild);
+  } else {
+    id = Evermore.param('w') || Evermore.currentId() || 'demo';
+    w = Evermore.getWedding(id);
+  }
   if (!w) { document.getElementById('content').classList.add('hide'); document.getElementById('top').classList.add('hide'); document.getElementById('notfound').classList.remove('hide'); return; }
 
   document.getElementById('site').className = 'tpl-' + (w.template || 'rose');
@@ -158,7 +170,7 @@
   document.getElementById('dayVenue').textContent = w.venue || '';
   document.getElementById('travelVenue').textContent = w.venue ? ('We will gather at ' + w.venue + '. Allow time for parking and arrive a little early.') : 'Directions and parking details to follow.';
   document.getElementById('rsvpTitle').textContent = 'Kindly reply to ' + names;
-  document.getElementById('photoLink').href = 'photos.html?w=' + id;
+  document.getElementById('photoLink').href = sample ? ('create.html?design=' + w.design) : ('photos.html?w=' + id);
   Evermore.countdown(w.date, document.getElementById('countdown'));
 
   var attending = '';
@@ -178,16 +190,21 @@
     var err = document.getElementById('rsvpErr');
     if (!name) { err.textContent = 'Please add your name.'; return; }
     if (!attending) { err.textContent = 'Please let us know if you can make it.'; return; }
-    Evermore.addRSVP(id, {
-      name: name, attending: attending,
-      party: attending === 'yes' ? (parseInt(document.getElementById('g_party').value,10)||1) : 0,
-      song: document.getElementById('g_song').value.trim(),
-      diet: document.getElementById('g_diet').value.trim()
-    });
-    var msg = attending === 'yes'
-      ? ('Thank you, ' + name + '! ' + names + " can't wait to celebrate with you.")
-      : ('Thank you for letting us know, ' + name + '. You will be missed dearly.');
-    document.getElementById('rsvpPanel').innerHTML = '<div class="center stack"><div class="script" style="font-size:2.6rem;color:var(--inv-accent,var(--blush))">With love</div><p class="lead center" style="margin-inline:auto">' + msg + '</p></div>';
+    var msg;
+    if (sample) {
+      msg = 'In your real invitation, this RSVP lands instantly in your dashboard — with headcount, song requests and dietary notes. <br><br><a class="btn btn-primary" href="create.html?design=' + w.design + '" style="margin-top:.6rem">Make this yours, free</a>';
+    } else {
+      Evermore.addRSVP(id, {
+        name: name, attending: attending,
+        party: attending === 'yes' ? (parseInt(document.getElementById('g_party').value,10)||1) : 0,
+        song: document.getElementById('g_song').value.trim(),
+        diet: document.getElementById('g_diet').value.trim()
+      });
+      msg = attending === 'yes'
+        ? ('Thank you, ' + name + '! ' + names + " can't wait to celebrate with you.")
+        : ('Thank you for letting us know, ' + name + '. You will be missed dearly.');
+    }
+    document.getElementById('rsvpPanel').innerHTML = '<div class="center stack"><div class="script" style="font-size:2.6rem;color:var(--inv-accent,var(--blush))">' + (sample ? 'A sample' : 'With love') + '</div><p class="lead center" style="margin-inline:auto">' + msg + '</p></div>';
   });
 
   Evermore.reveal();
