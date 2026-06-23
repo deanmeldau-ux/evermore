@@ -333,3 +333,48 @@ footer a:hover{color:var(--blush)}
 .suggest:hover{border-color:var(--blush);color:var(--blush-deep)}
 .chat-input{display:flex;gap:.6rem}
 .chat-input input{flex:1}
+
+/* ===================== RESPONSIVE HARDENING — any device, any resolution ===================== */
+*{min-width:0}                                   /* stop flex/grid children from overflowing */
+html,body{max-width:100%;overflow-x:hidden}      /* never scroll sideways */
+img,svg,video,canvas{max-width:100%}
+input,textarea,select{max-width:100%}
+h1,h2,h3,h4,p,a,span,li{overflow-wrap:break-word}
+.container,.narrow{max-width:min(100%,var(--maxw))}
+.narrow{max-width:min(100%,620px)}
+.hero-photo .inner,.band .container{max-width:min(100%,780px)}
+
+/* very large screens — keep measure comfortable */
+@media(min-width:1600px){ :root{--maxw:1200px} }
+
+/* tablets — let splits use the width sooner */
+@media(min-width:680px) and (max-width:840px){ .split{grid-template-columns:1fr 1fr;gap:28px} }
+
+/* small phones (≤400px) */
+@media(max-width:400px){
+  .container{padding-left:18px;padding-right:18px}
+  .nav .container{height:62px}
+  .brand{font-size:1.55rem}
+  .nav-links{gap:.85rem}
+  .nav-links a{font-size:.58rem;letter-spacing:.12em}
+  .countdown{gap:.85rem}
+  .cd{min-width:46px}
+  .design-grid{gap:12px}
+  .budget-row{gap:.6rem}
+  .budget-row .lbl{width:48%;font-size:.76rem}
+  .budget-row .amt{width:70px;font-size:.74rem}
+  .stat .num{font-size:2.1rem}
+  .quotes,.grid-3{gap:16px}
+}
+/* tiny phones (≤340px) */
+@media(max-width:340px){
+  .nav-links{gap:.7rem}
+  .nav-links a{font-size:.54rem;letter-spacing:.06em}
+  .budget-row .lbl{width:44%}
+}
+
+/* short landscape — don't force tall full-height heroes */
+@media(max-height:560px) and (orientation:landscape){
+  .hero-photo{min-height:auto;padding:5.5rem 0}
+  .invite{min-height:auto;padding:4rem 1.2rem}
+}
